@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navy Training Center · ROVER</title>
+
+  <!--
+    ROVER · Case Study Embed
+    ------------------------
+    Fonts:
+      • Display: MADE EVOLVE Sans   (load locally — see @font-face stubs below)
+      • Body:    Inter               (loaded from Google Fonts)
+
+    To use MADE EVOLVE Sans:
+      1. Drop your licensed font files into a /fonts/ directory next to this HTML.
+      2. Update the @font-face src paths if your filenames differ.
+      Until then, the page falls back to Inter for display type.
+
+    To embed inside Wix (or any CMS):
+      • Use a Custom HTML / iframe element.
+      • Paste the entire <body> content + <style> block.
+      • Or upload this file as-is and reference it via a <iframe src=…>.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* MADE EVOLVE Sans — replace src paths with your licensed font files */
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Regular.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Regular.woff')  format('woff');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Medium.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Medium.woff')  format('woff');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Bold.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Bold.woff')  format('woff');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --bg:        #000000;
+      --fg:        #ffffff;
+      --fg-muted:  rgba(255,255,255,0.72);
+      --fg-quiet:  rgba(255,255,255,0.5);
+      --rule:      rgba(255,255,255,0.18);
+      --rule-soft: rgba(255,255,255,0.10);
+      --display:   'MADE EVOLVE Sans', 'Inter', system-ui, sans-serif;
+      --body:      'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .case {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 96px 32px 112px;
+    }
+
+    /* Tag strip */
+    .case__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 28px;
+    }
+    .tag       { border: 1px solid var(--rule); padding: 5px 10px; }
+    .tag--bare { padding: 5px 0; }
+
+    /* Title block */
+    .case__title {
+      font-family: var(--display);
+      font-size: clamp(40px, 6.4vw, 68px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.04;
+      margin: 0 0 24px;
+    }
+    .case__lede {
+      font-family: var(--body);
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 640px;
+      line-height: 1.45;
+      margin: 0 0 56px;
+    }
+    .case__lede .quote {
+      font-style: italic;
+      color: var(--fg);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .divider {
+      border: 0;
+      height: 1px;
+      background: var(--rule);
+      margin: 0 0 56px;
+    }
+
+    /* Sections */
+    .section { margin: 0 0 64px; }
+
+    .label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 20px;
+    }
+
+    .body {
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+      margin: 0;
+    }
+
+    /* Mechanism — 4 phases */
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .phase {
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+    }
+    .phase__num {
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      color: var(--fg-quiet);
+      margin: 0 0 10px;
+    }
+    .phase__name {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+    }
+    .phase__body {
+      font-family: var(--body);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+
+    /* What we built */
+    .deliverables {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      font-family: var(--body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.88);
+    }
+    .deliverable {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    /* Shift — before/after */
+    .shift {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .shift__side {
+      border-left: 1px solid var(--rule);
+      padding-left: 20px;
+    }
+    .shift__tag {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 8px;
+    }
+    .shift__body {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+    }
+
+    /* Scale stats */
+    .scale {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 32px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .stat__num {
+      font-family: var(--display);
+      font-size: clamp(30px, 4.4vw, 40px);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 6px;
+    }
+    .stat__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+
+    /* Pull-quote / principle */
+    .principle {
+      font-family: var(--display);
+      font-size: clamp(24px, 3.6vw, 36px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      max-width: 760px;
+      margin: 0 0 18px;
+    }
+    .principle__attr {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0;
+    }
+
+    /* Scope panel */
+    .scope {
+      border: 1px solid var(--rule);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .scope .label { margin-bottom: 8px; }
+    .scope__body {
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+    }
+
+    /* Next + CTA footer */
+    .next {
+      margin-top: 96px;
+      padding-top: 36px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .next__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 10px;
+    }
+    .next__link {
+      font-family: var(--display);
+      font-size: clamp(20px, 2.8vw, 26px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .next__meta {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin: 6px 0 0;
+    }
+
+    .cta {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+      border: 1px solid var(--fg);
+      padding: 14px 22px;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .cta:hover { background: var(--fg); color: var(--bg); }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .phases       { grid-template-columns: 1fr 1fr; }
+      .scale        { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
+    }
+    @media (max-width: 560px) {
+      .case          { padding: 64px 22px 88px; }
+      .deliverables  { grid-template-columns: 1fr; }
+      .shift         { grid-template-columns: 1fr; }
+      .scope         { grid-template-columns: 1fr; padding: 22px; }
+      .next          { flex-direction: column; align-items: flex-start; }
+      .case__title   { font-size: 40px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<article class="case">
+
+  <!-- Tag strip -->
+  <div class="case__tags">
+    <span class="tag">Delivered</span>
+    <span class="tag">Brand strategy</span>
+    <span class="tag--bare">2022—2023</span>
+  </div>
+
+  <!-- Title + lede -->
+  <h1 class="case__title">Navy Training Center</h1>
+
+  <p class="case__lede">
+    <span class="quote">"We were growing, but something felt off."</span>
+    A regional fitness brand had reached the edge of what informal could carry. We helped them build the system underneath.
+  </p>
+
+  <hr class="divider" />
+
+  <!-- The problem -->
+  <section class="section">
+    <p class="label">The problem</p>
+    <p class="body">
+      Navy had grown into a recognizable Mexican fitness brand with a loyal community across multiple studios. The team wanted to expand into new states, but everything that worked at one location had been built informally — communication, pricing, product, look-and-feel. Without a system, expansion meant either inconsistency or paralysis. The brand needed to become reproducible without losing what made it work in the first place.
+    </p>
+  </section>
+
+  <!-- The mechanism -->
+  <section class="section">
+    <p class="label">The mechanism</p>
+    <div class="phases">
+      <div class="phase">
+        <p class="phase__num">01</p>
+        <p class="phase__name">Diagnose</p>
+        <p class="phase__body">Audited every customer-facing layer — location, product, pricing, communication — against the brand's real personality and the premium fitness market.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">02</p>
+        <p class="phase__name">Define</p>
+        <p class="phase__body">Set positioning, language, and product architecture that could survive distance — same brand, new staff, new city.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">03</p>
+        <p class="phase__name">Design</p>
+        <p class="phase__body">Built the system: new product line, tiered pricing, evergreen content, staff manuals, visual and verbal guidelines.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">04</p>
+        <p class="phase__name">Deploy</p>
+        <p class="phase__body">Rolled out across existing locations and prepared the foundation for franchise expansion.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we built -->
+  <section class="section">
+    <p class="label">What we built</p>
+    <div class="deliverables">
+      <div class="deliverable">Brand strategy + visual and verbal guidelines</div>
+      <div class="deliverable">The Galley — smoothie bar product line</div>
+      <div class="deliverable">Tiered pricing strategy across services</div>
+      <div class="deliverable">Product naming system across categories</div>
+      <div class="deliverable">Staff manuals and operations playbooks</div>
+      <div class="deliverable">Evergreen content strategy + calendar</div>
+    </div>
+  </section>
+
+  <!-- The shift -->
+  <section class="section">
+    <p class="label">The shift</p>
+    <div class="shift">
+      <div class="shift__side">
+        <p class="shift__tag">Before</p>
+        <p class="shift__body">A successful single-location feel that didn't transfer cleanly to new staff or new cities.</p>
+      </div>
+      <div class="shift__side">
+        <p class="shift__tag">After</p>
+        <p class="shift__body">A brand-as-system. Reproducible, teachable, ready to franchise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program scale (honest framing — scale, not attribution) -->
+  <section class="section">
+    <p class="label">Program scale, post-launch</p>
+    <div class="scale">
+      <div>
+        <p class="stat__num">3</p>
+        <p class="stat__label">Studios</p>
+      </div>
+      <div>
+        <p class="stat__num">30+</p>
+        <p class="stat__label">Masterclasses</p>
+      </div>
+      <div>
+        <p class="stat__num">3</p>
+        <p class="stat__label">Day camps</p>
+      </div>
+      <div>
+        <p class="stat__num">800+</p>
+        <p class="stat__label">Athletes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROVER principle -->
+  <section class="section" style="margin-top: 88px;">
+    <p class="principle">A brand that can't be reproduced isn't a brand yet. It's a place. Strategy is what makes a brand portable.</p>
+    <p class="principle__attr">— ROVER Principle</p>
+  </section>
+
+  <!-- Scope -->
+  <section class="section">
+    <div class="scope">
+      <div>
+        <p class="label">Engagement type</p>
+        <p class="scope__body">Strategy Design &amp; Deployment.<br />Multi-phase, ~12 months.</p>
+      </div>
+      <div>
+        <p class="label">Not included</p>
+        <p class="scope__body">Ongoing content production, paid media, day-to-day brand management.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next + CTA -->
+  <div class="next">
+    <div>
+      <p class="next__label">Next case</p>
+      <a href="#" class="next__link">Biocotech Americas →</a>
+      <p class="next__meta">Industrial composting · Ongoing</p>
+    </div>
+    <a href="#" class="cta">Book a Brand Alignment Session →</a>
+  </div>
+
+</article>
+
+</body>
+</html>
