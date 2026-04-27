@@ -17,10 +17,8 @@
       2. Update the @font-face src paths if your filenames differ.
       Until then, the page falls back to Inter for display type.
 
-    To embed inside Wix (or any CMS):
-      • Use a Custom HTML / iframe element.
-      • Paste the entire <body> content + <style> block.
-      • Or upload this file as-is and reference it via a <iframe src=…>.
+    Hosted at: https://roverlabmx.github.io/rover-navy/rover_case_study_navy.html
+    Embed:     see embed_snippet.html in this repo.
   -->
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -483,6 +481,27 @@
   </div>
 
 </article>
+
+<script>
+  /* Auto-resize emitter
+     Posts this page's height to the parent window so iframe embeds can
+     match content height instead of using a fixed value. Safe to run
+     standalone — does nothing useful when not iframed. */
+  (function () {
+    var last = 0;
+    function emit() {
+      var h = Math.ceil(document.documentElement.scrollHeight);
+      if (h === last) return;
+      last = h;
+      try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
+    }
+    window.addEventListener('load', emit);
+    window.addEventListener('resize', emit);
+    if ('ResizeObserver' in window) new ResizeObserver(emit).observe(document.body);
+    else setInterval(emit, 500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
+  })();
+</script>
 
 </body>
 </html>
