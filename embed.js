@@ -69,7 +69,10 @@
         if (!e || !e.data || e.data.type !== 'rover:case-height') return;
         if (e.source !== iframe.contentWindow) return;
         var h = parseInt(e.data.height, 10);
-        if (h) iframe.style.height = (h + 8) + 'px';
+        /* No buffer here — the emitter already adds a 4px subpixel pad.
+           Adding more would push the iframe past the content and re-trigger
+           the growth loop. */
+        if (h) iframe.style.height = h + 'px';
       });
     });
   }

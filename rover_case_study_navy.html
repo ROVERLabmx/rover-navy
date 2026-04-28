@@ -518,23 +518,57 @@
 </article>
 
 <script>
-  /* Auto-resize emitter
-     Posts this page's height to the parent window so iframe embeds can
-     match content height instead of using a fixed value. Safe to run
-     standalone — does nothing useful when not iframed. */
+  /* Auto-resize emitter — content-bound (no growth loop).
+     Measures the .case article element directly. document.documentElement.scrollHeight
+     is floored by the iframe viewport size, which creates a feedback loop:
+     each emit grows the iframe → next measurement returns the larger viewport
+     height → iframe grows again → infinite scroll. Measuring the article via
+     getBoundingClientRect() is content-driven and immune to iframe size. */
   (function () {
+    'use strict';
     var last = 0;
+    var article = null;
+    var raf = 0;
+
+    function getArticle() {
+      if (!article) article = document.querySelector('.case');
+      return article;
+    }
+
     function emit() {
-      var h = Math.ceil(document.documentElement.scrollHeight);
+      var el = getArticle();
+      if (!el) return;
+      var h = Math.ceil(el.getBoundingClientRect().height) + 4; /* subpixel buffer */
       if (h === last) return;
       last = h;
       try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
     }
+
+    function schedule() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(emit);
+    }
+
+    function start() {
+      var el = getArticle();
+      if (!el) return;
+      emit();
+      if ('ResizeObserver' in window) {
+        /* Observe the article specifically — not the body — so iframe-level
+           size changes can't trigger another emit. */
+        new ResizeObserver(schedule).observe(el);
+      }
+    }
+
+    window.addEventListener('resize', schedule);
     window.addEventListener('load', emit);
-    window.addEventListener('resize', emit);
-    if ('ResizeObserver' in window) new ResizeObserver(emit).observe(document.body);
-    else setInterval(emit, 500);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', start);
+    } else {
+      start();
+    }
   })();
 </script>
 
