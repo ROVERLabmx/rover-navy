@@ -72,7 +72,7 @@
     .case {
       max-width: 880px;
       margin: 0 auto;
-      padding: 96px 32px 112px;
+      padding: 96px 32px 56px;
     }
 
     /* Tag strip */
@@ -266,7 +266,7 @@
       border: 1px solid var(--rule);
       padding: 28px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
     .scope .label { margin-bottom: 8px; }
@@ -327,10 +327,33 @@
     }
     .cta:hover { background: var(--fg); color: var(--bg); }
 
+    /* End mark — visual page terminator */
+    .end-mark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 72px;
+    }
+    .end-mark__rule {
+      width: 32px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+    .end-mark__label {
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.5em;
+      color: rgba(255,255,255,0.55);
+      padding-left: 0.5em; /* compensates for trailing letter-spacing */
+    }
+
     /* Responsive */
     @media (max-width: 760px) {
       .phases       { grid-template-columns: 1fr 1fr; }
       .scale        { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
+      .scope        { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
       .case          { padding: 64px 22px 88px; }
@@ -462,6 +485,10 @@
       <div>
         <p class="label">Engagement type</p>
         <p class="scope__body">Strategy Design &amp; Deployment.<br />Multi-phase, ~12 months.</p>
+      </div>
+      <div>
+        <p class="label">In collaboration with</p>
+        <p class="scope__body">Angulo Estudio Creativo<br />Ricardo Ramos Studio</p>
       </div>
       <div>
         <p class="label">Not included</p>

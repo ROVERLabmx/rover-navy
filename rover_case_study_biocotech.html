@@ -286,7 +286,7 @@
       border: 1px solid var(--rule);
       padding: 28px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 28px;
     }
     .scope .label { margin-bottom: 8px; }
@@ -350,6 +350,7 @@
     /* Responsive */
     @media (max-width: 760px) {
       .phases       { grid-template-columns: 1fr 1fr; }
+      .scope        { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
       .case          { padding: 64px 22px 88px; }
@@ -475,7 +476,11 @@
       </div>
       <div>
         <p class="label">In collaboration with</p>
-        <p class="scope__body">Ricky Ramos Studio<br /><span style="color: var(--fg-quiet);">Visual identity system</span></p>
+        <p class="scope__body">Ricardo Ramos Studio<br /><span style="color: var(--fg-quiet);">Visual identity system</span></p>
+      </div>
+      <div>
+        <p class="label">Not included</p>
+        <p class="scope__body">Engineering, lead generation, day-to-day sales operations.</p>
       </div>
     </div>
   </section>
