@@ -1,0 +1,48 @@
+<!--
+  ROVER · Wix embed snippet · Biocotech Americas
+  ===============================================
+  Paste the block below into Wix:
+    Add (+) → Embed Code → Embed HTML → "Custom Code"
+
+  Auto-resizes the iframe to match the case study's height,
+  so you don't need to set a fixed pixel height on the Wix element.
+-->
+
+<!-- ─────────────────────────────────────────────────────────────────
+     RECOMMENDED · Auto-resizing embed
+     ───────────────────────────────────────────────────────────────── -->
+
+<iframe id="rover-case-biocotech"
+        src="https://roverlabmx.github.io/rover-navy/rover_case_study_biocotech.html"
+        title="Biocotech Americas · ROVER case study"
+        style="width:100%; border:0; display:block; background:#000;"
+        height="2400"
+        loading="lazy"
+        scrolling="no"></iframe>
+
+<script>
+  (function () {
+    var iframe = document.getElementById('rover-case-biocotech');
+    if (!iframe) return;
+    window.addEventListener('message', function (e) {
+      if (!e || !e.data || e.data.type !== 'rover:case-height') return;
+      // Optional origin check — uncomment once embedded:
+      // if (e.origin !== 'https://roverlabmx.github.io') return;
+      var h = parseInt(e.data.height, 10);
+      if (h && iframe) iframe.style.height = (h + 8) + 'px';
+    });
+  })();
+</script>
+
+
+<!-- ─────────────────────────────────────────────────────────────────
+     FALLBACK · Simple iframe (no script)
+     Use this if your Wix tier blocks custom <script>.
+     ───────────────────────────────────────────────────────────────── -->
+
+<!--
+<iframe src="https://roverlabmx.github.io/rover-navy/rover_case_study_biocotech.html"
+        title="Biocotech Americas · ROVER case study"
+        style="width:100%; border:0; display:block; background:#000; min-height:2600px;"
+        loading="lazy"></iframe>
+-->

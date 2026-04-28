@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biocotech Americas · ROVER</title>
+
+  <!--
+    ROVER · Case Study Embed
+    ------------------------
+    Fonts:
+      • Display: MADE EVOLVE Sans   (load locally — see @font-face stubs below)
+      • Body:    Inter               (loaded from Google Fonts)
+
+    Hosted at: https://roverlabmx.github.io/rover-navy/rover_case_study_biocotech.html
+    Embed:     see embed_snippet_biocotech.html in this repo.
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* MADE EVOLVE Sans — replace src paths with your licensed font files */
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Regular.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Regular.woff')  format('woff');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Medium.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Medium.woff')  format('woff');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'MADE EVOLVE Sans';
+      src: url('fonts/MADE-Evolve-Sans-Bold.woff2') format('woff2'),
+           url('fonts/MADE-Evolve-Sans-Bold.woff')  format('woff');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    :root {
+      --bg:        #000000;
+      --fg:        #ffffff;
+      --fg-muted:  rgba(255,255,255,0.72);
+      --fg-quiet:  rgba(255,255,255,0.5);
+      --rule:      rgba(255,255,255,0.18);
+      --rule-soft: rgba(255,255,255,0.10);
+      --display:   'MADE EVOLVE Sans', 'Inter', system-ui, sans-serif;
+      --body:      'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .case {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 96px 32px 112px;
+    }
+
+    /* Tag strip */
+    .case__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 28px;
+    }
+    .tag        { border: 1px solid var(--rule); padding: 5px 10px; }
+    .tag--bare  { padding: 5px 0; }
+    .tag--live  {
+      border-color: rgba(255,255,255,0.45);
+      color: #fff;
+    }
+    .tag--live::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: #fff;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: 1px;
+    }
+
+    /* Title block */
+    .case__title {
+      font-family: var(--display);
+      font-size: clamp(40px, 6.4vw, 68px);
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.04;
+      margin: 0 0 24px;
+    }
+    .case__lede {
+      font-family: var(--body);
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 300;
+      color: var(--fg-muted);
+      max-width: 660px;
+      line-height: 1.45;
+      margin: 0 0 56px;
+    }
+    .case__lede .quote {
+      font-style: italic;
+      color: var(--fg);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .divider {
+      border: 0;
+      height: 1px;
+      background: var(--rule);
+      margin: 0 0 56px;
+    }
+
+    /* Sections */
+    .section { margin: 0 0 64px; }
+
+    .label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0 0 20px;
+    }
+
+    .body {
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.92);
+      max-width: 680px;
+      margin: 0;
+    }
+
+    /* Mechanism — 4 phases */
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .phase {
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+    }
+    .phase__num {
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      color: var(--fg-quiet);
+      margin: 0 0 10px;
+    }
+    .phase__name {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+    }
+    .phase__name .pending {
+      font-family: var(--body);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin-left: 8px;
+      vertical-align: 2px;
+    }
+    .phase__body {
+      font-family: var(--body);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      margin: 0;
+    }
+
+    /* What we built */
+    .deliverables {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      font-family: var(--body);
+      font-size: 15px;
+      color: rgba(255,255,255,0.88);
+    }
+    .deliverable {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule-soft);
+    }
+
+    /* Shift — before/in progress */
+    .shift {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .shift__side {
+      border-left: 1px solid var(--rule);
+      padding-left: 20px;
+    }
+    .shift__tag {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 8px;
+    }
+    .shift__body {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+    }
+
+    /* Where we are now — prose block for ongoing cases */
+    .progress {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 32px 0;
+    }
+    .progress__body {
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+      max-width: 720px;
+    }
+    .progress__next {
+      margin-top: 20px;
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.6;
+    }
+    .progress__next em {
+      color: var(--fg);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Pull-quote / principle */
+    .principle {
+      font-family: var(--display);
+      font-size: clamp(24px, 3.6vw, 36px);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      max-width: 760px;
+      margin: 0 0 18px;
+    }
+    .principle__attr {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0;
+    }
+
+    /* Scope panel */
+    .scope {
+      border: 1px solid var(--rule);
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .scope .label { margin-bottom: 8px; }
+    .scope__body {
+      font-family: var(--body);
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.88);
+      margin: 0;
+    }
+
+    /* Next + CTA footer */
+    .next {
+      margin-top: 96px;
+      padding-top: 36px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .next__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 10px;
+    }
+    .next__link {
+      font-family: var(--display);
+      font-size: clamp(20px, 2.8vw, 26px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .next__meta {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin: 6px 0 0;
+    }
+
+    .cta {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+      border: 1px solid var(--fg);
+      padding: 14px 22px;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .cta:hover { background: var(--fg); color: var(--bg); }
+
+    /* Responsive */
+    @media (max-width: 760px) {
+      .phases       { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .case          { padding: 64px 22px 88px; }
+      .deliverables  { grid-template-columns: 1fr; }
+      .shift         { grid-template-columns: 1fr; }
+      .scope         { grid-template-columns: 1fr; padding: 22px; }
+      .next          { flex-direction: column; align-items: flex-start; }
+      .case__title   { font-size: 40px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<article class="case">
+
+  <!-- Tag strip -->
+  <div class="case__tags">
+    <span class="tag tag--live">Ongoing</span>
+    <span class="tag">Brand strategy</span>
+    <span class="tag">Market entry</span>
+    <span class="tag--bare">2023—Present</span>
+  </div>
+
+  <!-- Title + lede -->
+  <h1 class="case__title">Biocotech Americas</h1>
+
+  <p class="case__lede">
+    <span class="quote">"We had the technology. We couldn't get buyers to hear what it does."</span>
+    A composting technology company entering the North American market needed its brand to catch up to its capability. The work is in progress.
+  </p>
+
+  <hr class="divider" />
+
+  <!-- The problem -->
+  <section class="section">
+    <p class="label">The problem</p>
+    <p class="body">
+      Biocotech Americas builds industrial composting systems — proven, sophisticated, sustainable. But the brand they had carried in had been built for a different market, a different scale, and a different audience. Entering the US and Canadian B2B market meant facing established players, more skeptical buyers, and a sales cycle that punishes any signal of "we're not quite ready." Their language, their materials, and their identity needed to reflect what BCTA had become — not what it had started as.
+    </p>
+  </section>
+
+  <!-- The mechanism -->
+  <section class="section">
+    <p class="label">The mechanism</p>
+    <div class="phases">
+      <div class="phase">
+        <p class="phase__num">01</p>
+        <p class="phase__name">Diagnose</p>
+        <p class="phase__body">Audited the existing brand against the North American competitive set — who BCTA was up against, how they spoke, where the language gap actually lived.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">02</p>
+        <p class="phase__name">Define</p>
+        <p class="phase__body">Reframed positioning around concrete impact and operational seriousness. Rebuilt brand foundation, aspiration, and promise to carry both sustainability and industrial credibility.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">03</p>
+        <p class="phase__name">Design</p>
+        <p class="phase__body">New visual identity, brand voice, sales-team materials, complementary service offerings, technical whitepapers — design system in collaboration with Ricky Ramos Studio.</p>
+      </div>
+      <div class="phase">
+        <p class="phase__num">04</p>
+        <p class="phase__name">Deploy <span class="pending">In progress</span></p>
+        <p class="phase__body">Rolling out new sales materials and website language. Iterating based on what's actually landing in active buyer conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What we built -->
+  <section class="section">
+    <p class="label">What we've built so far</p>
+    <div class="deliverables">
+      <div class="deliverable">Brand strategy and positioning for North America</div>
+      <div class="deliverable">New brand identity system (with Ricky Ramos Studio)</div>
+      <div class="deliverable">Sales-team support materials across 3 angles</div>
+      <div class="deliverable">BioSpeed Maintenance — productized service line</div>
+      <div class="deliverable">Whitepaper: Golden Gate Park BioSpeed integration</div>
+      <div class="deliverable">Website redesign and language download</div>
+    </div>
+  </section>
+
+  <!-- The shift -->
+  <section class="section">
+    <p class="label">The shift</p>
+    <div class="shift">
+      <div class="shift__side">
+        <p class="shift__tag">Before</p>
+        <p class="shift__body">A capable industrial company speaking in language built for a different scale and a different audience.</p>
+      </div>
+      <div class="shift__side">
+        <p class="shift__tag">In progress</p>
+        <p class="shift__body">A brand whose voice, materials, and identity match the maturity of the technology — and the seriousness of the buyers it's now reaching.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Where we are now (replaces the stat grid for ongoing cases) -->
+  <section class="section">
+    <p class="label">Where we are now</p>
+    <div class="progress">
+      <p class="progress__body">
+        The new brand foundation, identity, and first wave of sales materials are in market. The website redesign is in deployment. We're tracking how the language is landing in active buyer conversations and iterating on the materials based on what's earning second meetings and what isn't.
+      </p>
+      <p class="progress__next">
+        <em>Next phases:</em> category-education content for procurement audiences, partner program structure, and a pricing strategy for the BioSpeed Maintenance service line.
+      </p>
+    </div>
+  </section>
+
+  <!-- ROVER principle -->
+  <section class="section" style="margin-top: 88px;">
+    <p class="principle">In B2B, the brand is permission. If the language doesn't earn it, the technology never gets evaluated.</p>
+    <p class="principle__attr">— ROVER Principle</p>
+  </section>
+
+  <!-- Scope -->
+  <section class="section">
+    <div class="scope">
+      <div>
+        <p class="label">Engagement type</p>
+        <p class="scope__body">Strategy Design &amp; Deployment.<br />Multi-phase, ongoing.</p>
+      </div>
+      <div>
+        <p class="label">In collaboration with</p>
+        <p class="scope__body">Ricky Ramos Studio<br /><span style="color: var(--fg-quiet);">Visual identity system</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next + CTA -->
+  <div class="next">
+    <div>
+      <p class="next__label">Next case</p>
+      <a href="#" class="next__link">mPos Global →</a>
+      <p class="next__meta">Latin American payment software · Delivered</p>
+    </div>
+    <a href="#" class="cta">Book a Brand Alignment Session →</a>
+  </div>
+
+</article>
+
+<script>
+  /* Auto-resize emitter
+     Posts this page's height to the parent window so iframe embeds can
+     match content height instead of using a fixed value. Safe to run
+     standalone — does nothing useful when not iframed. */
+  (function () {
+    var last = 0;
+    function emit() {
+      var h = Math.ceil(document.documentElement.scrollHeight);
+      if (h === last) return;
+      last = h;
+      try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
+    }
+    window.addEventListener('load', emit);
+    window.addEventListener('resize', emit);
+    if ('ResizeObserver' in window) new ResizeObserver(emit).observe(document.body);
+    else setInterval(emit, 500);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
+  })();
+</script>
+
+</body>
+</html>
