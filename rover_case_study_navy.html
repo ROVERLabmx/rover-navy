@@ -356,12 +356,13 @@
       .scope        { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 560px) {
-      .case          { padding: 64px 22px 88px; }
+      .case          { padding: 64px 22px 40px; }
       .deliverables  { grid-template-columns: 1fr; }
       .shift         { grid-template-columns: 1fr; }
       .scope         { grid-template-columns: 1fr; padding: 22px; }
       .next          { flex-direction: column; align-items: flex-start; }
       .case__title   { font-size: 40px; }
+      .end-mark      { margin-top: 56px; }
     }
   </style>
 </head>
@@ -505,6 +506,13 @@
       <p class="next__meta">Industrial composting · Ongoing</p>
     </div>
     <a href="#" class="cta">Book a Brand Alignment Session →</a>
+  </div>
+
+  <!-- End mark -->
+  <div class="end-mark" aria-hidden="true">
+    <span class="end-mark__rule"></span>
+    <span class="end-mark__label">ROVER</span>
+    <span class="end-mark__rule"></span>
   </div>
 
 </article>
