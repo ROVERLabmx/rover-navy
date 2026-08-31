@@ -536,9 +536,59 @@
         buttons.forEach(function (b) {
           b.classList.toggle('active', b.getAttribute('data-set-lang') === lang);
         });
+        scheduleResize();
       });
     });
   })();
+
+  /* Auto-resize emitter, content-bound (no growth loop).
+     Measures the .case article element directly. document.documentElement.scrollHeight
+     is floored by the iframe viewport size, which creates a feedback loop:
+     each emit grows the iframe, the next measurement returns the larger viewport
+     height, the iframe grows again, infinite scroll. Measuring the article via
+     getBoundingClientRect() is content-driven and immune to iframe size.
+     Also re-fires on language toggle, since EN/ES copy differs in length. */
+  var last = 0;
+  var article = null;
+  var raf = 0;
+
+  function getArticle() {
+    if (!article) article = document.querySelector('.case');
+    return article;
+  }
+
+  function emit() {
+    var el = getArticle();
+    if (!el) return;
+    var h = Math.ceil(el.getBoundingClientRect().height) + 4;
+    if (h === last) return;
+    last = h;
+    try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
+  }
+
+  function scheduleResize() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(emit);
+  }
+
+  function start() {
+    var el = getArticle();
+    if (!el) return;
+    emit();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(scheduleResize).observe(el);
+    }
+  }
+
+  window.addEventListener('resize', scheduleResize);
+  window.addEventListener('load', emit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
 </script>
 
 </body>
