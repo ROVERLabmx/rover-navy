@@ -294,9 +294,57 @@
       .sys-list { grid-template-columns: 1fr; }
       .scale { grid-template-columns: 1fr; gap: 24px; }
     }
+    .next {
+      margin-top: 96px;
+      padding-top: 36px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .next__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 10px;
+    }
+    .next__link {
+      font-family: var(--display);
+      font-size: clamp(20px, 2.8vw, 26px);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      text-decoration: none;
+    }
+    .next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .next__meta {
+      font-family: var(--body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      margin: 6px 0 0;
+    }
+    .cta {
+      font-family: var(--body);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+      text-decoration: none;
+      border: 1px solid var(--fg);
+      padding: 14px 22px;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .cta:hover { background: var(--fg); color: var(--bg); }
+
     @media (max-width: 560px) {
       .case { padding: 56px 20px 40px; }
       .scope { padding: 20px; }
+      .next { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -507,6 +555,20 @@
       </div>
     </div>
   </section>
+
+  <div class="next">
+    <div data-lang="en">
+      <p class="next__label">Next case</p>
+      <a href="rover_case_study_navy.html" class="next__link">Navy Training Center &rarr;</a>
+      <p class="next__meta">Brand systems &middot; Fitness &middot; Delivered</p>
+    </div>
+    <div data-lang="es">
+      <p class="next__label">Siguiente caso</p>
+      <a href="rover_case_study_navy.html" class="next__link">Navy Training Center &rarr;</a>
+      <p class="next__meta">Sistemas de marca &middot; Fitness &middot; Entregado</p>
+    </div>
+    <a href="mailto:info@rover.mx?subject=Brand%20Alignment%20Session%3A%20booking%20request&amp;body=Hi%20ROVER%2C%0A%0AI%27d%20like%20to%20book%20a%20Brand%20Alignment%20Session.%0A%0AA%20bit%20about%20what%20I%27m%20building%3A%0A%0A" class="cta">Book a Brand Alignment Session &rarr;</a>
+  </div>
 
   <div class="end-mark" aria-hidden="true">
     <span class="end-mark__rule"></span>
