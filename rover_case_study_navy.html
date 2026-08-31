@@ -3,30 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Navy Training Center · ROVER</title>
-
-  <!--
-    ROVER · Case Study Embed
-    ------------------------
-    Fonts:
-      • Display: MADE EVOLVE Sans   (load locally — see @font-face stubs below)
-      • Body:    Inter               (loaded from Google Fonts)
-
-    To use MADE EVOLVE Sans:
-      1. Drop your licensed font files into a /fonts/ directory next to this HTML.
-      2. Update the @font-face src paths if your filenames differ.
-      Until then, the page falls back to Inter for display type.
-
-    Hosted at: https://roverlabmx.github.io/rover-navy/rover_case_study_navy.html
-    Embed:     see embed_snippet.html in this repo.
-  -->
+  <title>Navy Training Center · The Brief · ROVER</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* MADE EVOLVE Sans — replace src paths with your licensed font files */
     @font-face {
       font-family: 'MADE EVOLVE Sans';
       src: url('fonts/MADE-Evolve-Sans-Regular.woff2') format('woff2'),
@@ -53,6 +36,7 @@
       --fg-quiet:  rgba(255,255,255,0.5);
       --rule:      rgba(255,255,255,0.18);
       --rule-soft: rgba(255,255,255,0.10);
+      --accent-bg: rgba(255,255,255,0.05);
       --display:   'MADE EVOLVE Sans', 'Inter', system-ui, sans-serif;
       --body:      'Inter', system-ui, -apple-system, sans-serif;
     }
@@ -60,8 +44,7 @@
     *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: var(--bg);
       color: var(--fg);
       font-family: var(--body);
@@ -72,10 +55,18 @@
     .case {
       max-width: 880px;
       margin: 0 auto;
-      padding: 96px 32px 56px;
+      padding: 72px 32px 56px;
     }
 
-    /* Tag strip */
+    /* Top bar: tags + lang toggle */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin: 0 0 28px;
+      flex-wrap: wrap;
+    }
     .case__tags {
       display: flex;
       flex-wrap: wrap;
@@ -86,149 +77,165 @@
       font-weight: 500;
       text-transform: uppercase;
       color: var(--fg-muted);
-      margin: 0 0 28px;
+      margin: 0;
     }
     .tag       { border: 1px solid var(--rule); padding: 5px 10px; }
     .tag--bare { padding: 5px 0; }
 
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--rule);
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      color: var(--fg-muted);
+      padding: 8px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      font-weight: inherit;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .lang-toggle button:first-child { border-right: 1px solid var(--rule); }
+    .lang-toggle button.active {
+      background: var(--fg);
+      color: var(--bg);
+    }
+    .lang-toggle button:not(.active):hover {
+      color: var(--fg);
+      background: var(--accent-bg);
+    }
+
+    /* Whitepaper label */
+    .doc-label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 18px;
+    }
+
     /* Title block */
     .case__title {
       font-family: var(--display);
-      font-size: clamp(40px, 6.4vw, 68px);
+      font-size: clamp(38px, 6vw, 62px);
       font-weight: 500;
       letter-spacing: -0.02em;
-      line-height: 1.04;
+      line-height: 1.05;
+      margin: 0 0 22px;
+    }
+    .case__subtitle {
+      font-family: var(--body);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
       margin: 0 0 24px;
+      font-weight: 600;
     }
     .case__lede {
       font-family: var(--body);
-      font-size: clamp(18px, 2.2vw, 22px);
+      font-size: clamp(17px, 2vw, 20px);
       font-weight: 300;
       color: var(--fg-muted);
-      max-width: 640px;
-      line-height: 1.45;
-      margin: 0 0 56px;
+      max-width: 660px;
+      line-height: 1.5;
+      margin: 0 0 48px;
     }
     .case__lede .quote {
       font-style: italic;
       color: var(--fg);
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .divider {
-      border: 0;
-      height: 1px;
+      border: 0; height: 1px;
       background: var(--rule);
-      margin: 0 0 56px;
+      margin: 0 0 48px;
     }
 
-    /* Sections */
-    .section { margin: 0 0 64px; }
+    /* Whitepaper sections */
+    .wp-section { margin: 0 0 56px; }
 
-    .label {
-      font-family: var(--body);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      font-weight: 500;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      margin: 0 0 20px;
-    }
-
-    .body {
-      font-family: var(--body);
-      font-size: 17px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.92);
-      max-width: 680px;
-      margin: 0;
-    }
-
-    /* Mechanism — 4 phases */
-    .phases {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .phase {
-      border-top: 1px solid var(--rule);
-      padding-top: 16px;
-    }
-    .phase__num {
+    .wp-num {
       font-family: var(--display);
       font-size: 13px;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.14em;
       color: var(--fg-quiet);
       margin: 0 0 10px;
     }
-    .phase__name {
+    .wp-heading {
       font-family: var(--display);
-      font-size: 19px;
+      font-size: clamp(24px, 3.2vw, 30px);
       font-weight: 500;
       letter-spacing: -0.01em;
-      margin: 0 0 10px;
+      margin: 0 0 20px;
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
     }
-    .phase__body {
+    .wp-body {
       font-family: var(--body);
-      font-size: 13px;
-      line-height: 1.55;
-      color: var(--fg-muted);
-      margin: 0;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin: 0 0 16px;
     }
+    .wp-body:last-child { margin-bottom: 0; }
+    .wp-body strong { color: var(--fg); font-weight: 600; }
 
-    /* What we built */
-    .deliverables {
+    /* System list */
+    .sys-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0 32px;
-      font-family: var(--body);
-      font-size: 15px;
-      color: rgba(255,255,255,0.88);
+      gap: 20px 32px;
+      margin: 24px 0 0;
     }
-    .deliverable {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--rule-soft);
+    .sys-item {
+      border-left: 2px solid var(--rule);
+      padding-left: 16px;
     }
-
-    /* Shift — before/after */
-    .shift {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .shift__side {
-      border-left: 1px solid var(--rule);
-      padding-left: 20px;
-    }
-    .shift__tag {
+    .sys-item__label {
       font-family: var(--body);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--fg-quiet);
-      margin: 0 0 8px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 6px;
     }
-    .shift__body {
+    .sys-item__body {
       font-family: var(--body);
-      font-size: 15px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.88);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--fg-muted);
       margin: 0;
     }
 
     /* Scale stats */
     .scale {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
-      padding: 32px 0;
+      padding: 28px 0;
       border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
+      margin: 0 0 24px;
     }
     .stat__num {
       font-family: var(--display);
-      font-size: clamp(30px, 4.4vw, 40px);
+      font-size: clamp(28px, 4vw, 38px);
       font-weight: 500;
       letter-spacing: -0.015em;
       margin: 0 0 6px;
@@ -236,21 +243,21 @@
     .stat__label {
       font-family: var(--body);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--fg-muted);
       margin: 0;
     }
 
-    /* Pull-quote / principle */
+    /* Principle */
     .principle {
       font-family: var(--display);
-      font-size: clamp(24px, 3.6vw, 36px);
+      font-size: clamp(22px, 3.2vw, 32px);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.28;
       letter-spacing: -0.015em;
-      max-width: 760px;
-      margin: 0 0 18px;
+      max-width: 740px;
+      margin: 0 0 16px;
     }
     .principle__attr {
       font-family: var(--body);
@@ -264,251 +271,252 @@
     /* Scope panel */
     .scope {
       border: 1px solid var(--rule);
-      padding: 28px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      padding: 26px;
     }
-    .scope .label { margin-bottom: 8px; }
-    .scope__body {
-      font-family: var(--body);
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.88);
-      margin: 0;
-    }
+    .scope .wp-body { max-width: none; }
 
-    /* Next + CTA footer */
-    .next {
-      margin-top: 96px;
-      padding-top: 36px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-    .next__label {
-      font-family: var(--body);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fg-quiet);
-      margin: 0 0 10px;
-    }
-    .next__link {
-      font-family: var(--display);
-      font-size: clamp(20px, 2.8vw, 26px);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--fg);
-      text-decoration: none;
-    }
-    .next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .next__meta {
-      font-family: var(--body);
-      font-size: 13px;
-      color: var(--fg-muted);
-      margin: 6px 0 0;
-    }
-
-    .cta {
-      font-family: var(--body);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fg);
-      text-decoration: none;
-      border: 1px solid var(--fg);
-      padding: 14px 22px;
-      transition: background 0.2s ease, color 0.2s ease;
-      white-space: nowrap;
-    }
-    .cta:hover { background: var(--fg); color: var(--bg); }
-
-    /* End mark — visual page terminator */
+    /* End mark */
     .end-mark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 72px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 64px;
     }
-    .end-mark__rule {
-      width: 32px;
-      height: 1px;
-      background: rgba(255,255,255,0.3);
-    }
+    .end-mark__rule { width: 32px; height: 1px; background: rgba(255,255,255,0.3); }
     .end-mark__label {
       font-family: var(--display);
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 11px; font-weight: 500;
       letter-spacing: 0.5em;
       color: rgba(255,255,255,0.55);
-      padding-left: 0.5em; /* compensates for trailing letter-spacing */
+      padding-left: 0.5em;
     }
 
-    /* Responsive */
-    @media (max-width: 760px) {
-      .phases       { grid-template-columns: 1fr 1fr; }
-      .scale        { grid-template-columns: 1fr 1fr; gap: 28px 16px; }
-      .scope        { grid-template-columns: 1fr 1fr; }
+    /* Lang visibility */
+    [data-lang="es"] { display: none; }
+    body.lang-es [data-lang="en"] { display: none; }
+    body.lang-es [data-lang="es"] { display: block; }
+    body.lang-es .sys-list[data-lang="es"] { display: grid; }
+    body.lang-es .scale[data-lang="es"] { display: grid; }
+
+    @media (max-width: 700px) {
+      .sys-list { grid-template-columns: 1fr; }
+      .scale { grid-template-columns: 1fr; gap: 24px; }
     }
     @media (max-width: 560px) {
-      .case          { padding: 64px 22px 40px; }
-      .deliverables  { grid-template-columns: 1fr; }
-      .shift         { grid-template-columns: 1fr; }
-      .scope         { grid-template-columns: 1fr; padding: 22px; }
-      .next          { flex-direction: column; align-items: flex-start; }
-      .case__title   { font-size: 40px; }
-      .end-mark      { margin-top: 56px; }
+      .case { padding: 56px 20px 40px; }
+      .scope { padding: 20px; }
     }
   </style>
 </head>
 
 <body>
-
 <article class="case">
 
-  <!-- Tag strip -->
-  <div class="case__tags">
-    <span class="tag">Delivered</span>
-    <span class="tag">Brand strategy</span>
-    <span class="tag--bare">2022—2023</span>
+  <div class="topbar">
+    <div class="case__tags">
+      <span class="tag">Delivered</span>
+      <span class="tag">Brand Systems</span>
+      <span class="tag--bare">2022-2025</span>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language toggle">
+      <button type="button" class="active" data-set-lang="en">EN</button>
+      <button type="button" data-set-lang="es">ES</button>
+    </div>
   </div>
 
-  <!-- Title + lede -->
+  <p class="doc-label" data-lang="en">The Brief: Whitepaper Case Study</p>
+  <p class="doc-label" data-lang="es">El Brief: Estudio de Caso</p>
+
   <h1 class="case__title">Navy Training Center</h1>
 
-  <p class="case__lede">
-    <span class="quote">"We were growing, but something felt off."</span>
-    A regional fitness brand had reached the edge of what informal could carry. We helped them build the system underneath.
-  </p>
+  <div data-lang="en">
+    <p class="case__lede">
+      <span class="quote">"We were growing, but a flood of new premium competitors had made that growth fragile."</span>
+      Two years of accumulated strategy work, consolidated into a single system and handed to investors, staff, and a new city.
+    </p>
+  </div>
+  <div data-lang="es">
+    <p class="case__lede">
+      <span class="quote">"Estábamos creciendo, pero una ola de nuevos competidores premium había hecho ese crecimiento frágil."</span>
+      Dos años de trabajo estratégico acumulado, consolidados en un solo sistema y entregado a inversionistas, personal y una nueva ciudad.
+    </p>
+  </div>
 
   <hr class="divider" />
 
-  <!-- The problem -->
-  <section class="section">
-    <p class="label">The problem</p>
-    <p class="body">
-      Navy had grown into a recognizable Mexican fitness brand with a loyal community across multiple studios. The team wanted to expand into new states, but everything that worked at one location had been built informally — communication, pricing, product, look-and-feel. Without a system, expansion meant either inconsistency or paralysis. The brand needed to become reproducible without losing what made it work in the first place.
-    </p>
-  </section>
-
-  <!-- The mechanism -->
-  <section class="section">
-    <p class="label">The mechanism</p>
-    <div class="phases">
-      <div class="phase">
-        <p class="phase__num">01</p>
-        <p class="phase__name">Diagnose</p>
-        <p class="phase__body">Audited every customer-facing layer — location, product, pricing, communication — against the brand's real personality and the premium fitness market.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">02</p>
-        <p class="phase__name">Define</p>
-        <p class="phase__body">Set positioning, language, and product architecture that could survive distance — same brand, new staff, new city.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">03</p>
-        <p class="phase__name">Design</p>
-        <p class="phase__body">Built the system: new product line, tiered pricing, evergreen content, staff manuals, visual and verbal guidelines.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">04</p>
-        <p class="phase__name">Deploy</p>
-        <p class="phase__body">Rolled out across existing locations and prepared the foundation for franchise expansion.</p>
-      </div>
+  <!-- SITUATION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">01</p>
+      <h2 class="wp-heading">Situation</h2>
+      <p class="wp-body">By 2022, Querétaro's premium fitness category was crowding fast. Boutique HIIT studios, bodyweight-training concepts, and franchise operators were entering the market faster than any single brand could out-market on volume alone. Navy had real assets: a loyal member base, a strong coach-led community, organic growth built on word of mouth. None of it was legible from outside the room. The brand had grown faster than its own identity had been defined.</p>
+      <p class="wp-body">This wasn't a cosmetic problem. It was a positioning problem with real financial consequences. Without a coherent identity, Navy had no defensible reason for a prospective member, or a future investor, to choose it over a wave of new, well-funded, polished entrants. The choice facing leadership was direct: formalize the brand into something that could compete on more than proximity and word of mouth, or watch differentiation and margin erode as the category matured around it.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">01</p>
+      <h2 class="wp-heading">Situación</h2>
+      <p class="wp-body">Para 2022, la categoría fitness premium en Querétaro se saturaba rápido. Estudios boutique de HIIT, conceptos de entrenamiento con peso corporal y operadores de franquicia entraban al mercado más rápido de lo que cualquier marca podía compensar solo con volumen. Navy tenía activos reales: una base de miembros leales, una comunidad fuerte liderada por coaches, crecimiento orgánico basado en recomendación. Nada de eso era legible desde afuera. La marca había crecido más rápido de lo que su propia identidad había sido definida.</p>
+      <p class="wp-body">Esto no era un problema estético. Era un problema de posicionamiento con consecuencias financieras reales. Sin una identidad coherente, Navy no tenía una razón defendible para que un prospecto, o un futuro inversionista, la eligiera sobre una ola de nuevos competidores bien financiados y pulidos. La decisión frente al liderazgo era directa: formalizar la marca en algo que pudiera competir con más que cercanía y recomendación, o ver erosionarse la diferenciación y el margen conforme la categoría maduraba a su alrededor.</p>
     </div>
   </section>
 
-  <!-- What we built -->
-  <section class="section">
-    <p class="label">What we built</p>
-    <div class="deliverables">
-      <div class="deliverable">Brand strategy + visual and verbal guidelines</div>
-      <div class="deliverable">The Galley — smoothie bar product line</div>
-      <div class="deliverable">Tiered pricing strategy across services</div>
-      <div class="deliverable">Product naming system across categories</div>
-      <div class="deliverable">Staff manuals and operations playbooks</div>
-      <div class="deliverable">Evergreen content strategy + calendar</div>
+  <!-- DIAGNOSIS -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">02</p>
+      <h2 class="wp-heading">Diagnosis</h2>
+      <p class="wp-body">The work began with an audit, not a design brief. What it found ran deeper than surface polish.</p>
+      <p class="wp-body">Navy's participation in a third-party, multi-studio class-pass platform was doing two kinds of damage at once. Commercially, it capped Navy's pricing at a discounted, platform-set rate, trading margin for foot traffic with no path to convert that traffic into loyalty. But the bigger risk was exposure: every visit through the platform put a casual Navy user directly inside a competing studio's system the following week. Each class taken elsewhere was a live comparison Navy wasn't positioned to win, and without a distinct identity of its own, price was the smaller problem. The bigger one was blending into a pile of interchangeable options that all looked and sounded the same.</p>
+      <p class="wp-body">That risk would only sharpen if Navy ever grew beyond its home market. Long-established, nationally recognized premium operators already held the loyalty of the category's most competitive city. That's brand recognition Navy would eventually have to compete against directly, not simply out-locate or out-price.</p>
+      <p class="wp-body">A parallel audit of Navy's own touchpoints (website, app, physical locations, the member journey from signup through post-class follow-up) found the same pattern compounding at ground level: inconsistent and at times contradictory information about class types, packages, and schedules; errors on customer-facing purchase pages; front-of-house experience that varied by location and by staff member, with no defined onboarding protocol; and no structured follow-up after a first visit, meaning a poor first impression had no second chance to recover.</p>
+      <p class="wp-body">A separate benchmarking study of category-leading premium fitness brands, used to locate the ceiling rather than copy anyone specific, clarified what "premium" actually looked like in practice: proprietary language systems, retail and content extensions, loyalty programs, and physical spaces built as brand expressions rather than purely functional rooms. Navy had the training quality to compete at that level. It didn't yet have the system, or the pricing discipline, to capture the value of it.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">02</p>
+      <h2 class="wp-heading">Diagnóstico</h2>
+      <p class="wp-body">El trabajo comenzó con una auditoría, no con un brief de diseño. Lo que encontró iba más profundo que el acabado superficial.</p>
+      <p class="wp-body">La participación de Navy en una plataforma externa de clases multi-estudio causaba dos tipos de daño a la vez. Comercialmente, limitaba el precio de Navy a una tarifa descontada fijada por la plataforma, cambiando margen por tráfico sin ninguna ruta para convertir ese tráfico en lealtad. Pero el riesgo mayor era la exposición: cada visita a través de la plataforma ponía a un usuario casual de Navy directamente dentro del sistema de un estudio competidor la semana siguiente. Cada clase tomada en otro lado era una comparación en vivo que Navy no estaba posicionada para ganar, y sin una identidad propia y distinta, el precio era el problema menor. El mayor era desaparecer en un montón de opciones intercambiables que se veían y sonaban igual.</p>
+      <p class="wp-body">Ese riesgo solo se agudizaría si Navy alguna vez crecía más allá de su mercado local. Operadores premium ya establecidos y reconocidos a nivel nacional tenían la preferencia de la ciudad más competitiva de la categoría. Ese es el tipo de reconocimiento de marca contra el cual Navy eventualmente tendría que competir directamente, no solo superar en ubicación o precio.</p>
+      <p class="wp-body">Una auditoría paralela de los propios puntos de contacto de Navy (sitio web, app, ubicaciones físicas, el recorrido del miembro desde el registro hasta el seguimiento post-clase) encontró el mismo patrón agravándose a nivel operativo: información inconsistente y en ocasiones contradictoria sobre tipos de clase, paquetes y horarios; errores en las páginas de compra orientadas al cliente; experiencia de recepción que variaba según ubicación y miembro del staff, sin protocolo de bienvenida definido; y ningún seguimiento estructurado después de una primera visita, lo que significaba que una mala primera impresión no tenía segunda oportunidad.</p>
+      <p class="wp-body">Un estudio de benchmarking separado sobre marcas fitness premium líderes en la categoría, usado para ubicar el techo y no para copiar a nadie en particular, clarificó lo que "premium" realmente significaba en la práctica: sistemas de lenguaje propios, extensiones de retail y contenido, programas de lealtad, y espacios físicos construidos como expresiones de marca y no solo salas funcionales. Navy tenía la calidad de entrenamiento para competir en ese nivel. Aún no tenía el sistema, ni la disciplina de precios, para capturar ese valor.</p>
     </div>
   </section>
 
-  <!-- The shift -->
-  <section class="section">
-    <p class="label">The shift</p>
-    <div class="shift">
-      <div class="shift__side">
-        <p class="shift__tag">Before</p>
-        <p class="shift__body">A successful single-location feel that didn't transfer cleanly to new staff or new cities.</p>
-      </div>
-      <div class="shift__side">
-        <p class="shift__tag">After</p>
-        <p class="shift__body">A brand-as-system. Reproducible, teachable, ready to franchise.</p>
-      </div>
+  <!-- INTERVENTION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">03</p>
+      <h2 class="wp-heading">Intervention</h2>
+      <p class="wp-body">Ricardo Ramos Studio led the engagement, recruiting us and Angulo Estudio Creativo to execute the work across two connected phases: brand realignment, and full brand story-selling and language development.</p>
+      <p class="wp-body">The brand itself was renamed, from Navy Sport Center to Navy Training Center, a deliberate shift toward what the brand actually was: a training system, not a generic sports facility. From there, the work built outward: a defined brand voice; a full naming architecture for memberships, class tiers, and staff roles, organized around a coherent internal logic of rank, commitment, and progression rather than arbitrary labels; a brand promise, mission, and positioning statement; and the tagline and motto, "Forged by Discipline, Built for Success" and "Semper Fit," designed to work as easily in a coach's opening remarks as in paid media.</p>
+      <p class="wp-body">Every element had to be operational, not decorative. Class-block structure, coach protocol, front-desk language, and post-visit follow-up were redefined alongside the brand's voice, because the diagnosis had shown the credibility problem lived as much in daily inconsistency and pricing leakage as in visual identity.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">03</p>
+      <h2 class="wp-heading">Intervención</h2>
+      <p class="wp-body">Ricardo Ramos Studio lideró el proyecto, reclutándonos a nosotros y a Angulo Estudio Creativo para ejecutar el trabajo en dos fases conectadas: realineación de marca, y desarrollo completo de story-selling y lenguaje de marca.</p>
+      <p class="wp-body">La marca misma fue renombrada, de Navy Sport Center a Navy Training Center, un cambio deliberado hacia lo que la marca realmente era: un sistema de entrenamiento, no una instalación deportiva genérica. A partir de ahí, el trabajo se construyó hacia afuera: una voz de marca definida; una arquitectura completa de nomenclatura para membresías, niveles de clase y roles de staff, organizada sobre una lógica interna coherente de rango, compromiso y progresión en lugar de etiquetas arbitrarias; una promesa de marca, misión y declaración de posicionamiento; y el tagline y lema, "Forged by Discipline, Built for Success" y "Semper Fit," diseñados para funcionar tanto en las palabras de apertura de un coach como en medios pagados.</p>
+      <p class="wp-body">Cada elemento tenía que ser operativo, no decorativo. La estructura de bloques de clase, el protocolo de coaches, el lenguaje de recepción y el seguimiento post-visita fueron redefinidos junto con la voz de la marca, porque el diagnóstico había mostrado que el problema de credibilidad vivía tanto en la inconsistencia diaria y la fuga de precio como en la identidad visual.</p>
     </div>
   </section>
 
-  <!-- Program scale (honest framing — scale, not attribution) -->
-  <section class="section">
-    <p class="label">Program scale, post-launch</p>
-    <div class="scale">
-      <div>
-        <p class="stat__num">3</p>
-        <p class="stat__label">Studios</p>
+  <!-- SYSTEM -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">04</p>
+      <h2 class="wp-heading">System</h2>
+      <p class="wp-body">Following that initial phase, we led a separate, later intervention: consolidating roughly two years of accumulated strategy, language, and operational work, produced across multiple contributors, into a single master document built to run four functions at once.</p>
+      <div class="sys-list">
+        <div class="sys-item">
+          <p class="sys-item__label">Voice Governance</p>
+          <p class="sys-item__body">Tone and language rules precise enough that any writer, on any channel, stayed recognizably Navy.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Operational Protocol</p>
+          <p class="sys-item__body">Defined coaching and front-of-house procedure, executable by staff at any location without direct oversight.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Commercial Architecture</p>
+          <p class="sys-item__body">A full membership and pricing logic, portable to a new market without being rebuilt from scratch.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Physical Standard</p>
+          <p class="sys-item__body">What "on-brand" meant in a leased space, usable directly in real-estate and buildout conversations.</p>
+        </div>
       </div>
-      <div>
-        <p class="stat__num">30+</p>
-        <p class="stat__label">Masterclasses</p>
+      <p class="wp-body" style="margin-top:24px;">That document became the reference used to brief a new set of investors, onboard staff at new locations, and direct agency and marketing efforts for the following year, including Navy's first expansion outside Querétaro.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">04</p>
+      <h2 class="wp-heading">Sistema</h2>
+      <p class="wp-body">Después de esa fase inicial, lideramos una intervención separada y posterior: consolidar aproximadamente dos años de estrategia, lenguaje y trabajo operativo acumulado, producido por múltiples colaboradores, en un solo documento maestro construido para operar cuatro funciones a la vez.</p>
+      <div class="sys-list" data-lang="es">
+        <div class="sys-item">
+          <p class="sys-item__label">Gobernanza de Voz</p>
+          <p class="sys-item__body">Reglas de tono y lenguaje lo suficientemente precisas para que cualquier redactor, en cualquier canal, se mantuviera reconociblemente Navy.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Protocolo Operativo</p>
+          <p class="sys-item__body">Procedimiento definido de coaching y recepción, ejecutable por staff en cualquier ubicación sin supervisión directa.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Arquitectura Comercial</p>
+          <p class="sys-item__body">Una lógica completa de membresías y precios, portable a un nuevo mercado sin reconstruirse desde cero.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Estándar Físico</p>
+          <p class="sys-item__body">Lo que "on-brand" significaba en un espacio arrendado, utilizable directamente en conversaciones de bienes raíces y construcción.</p>
+        </div>
       </div>
-      <div>
-        <p class="stat__num">3</p>
-        <p class="stat__label">Day camps</p>
-      </div>
-      <div>
-        <p class="stat__num">800+</p>
-        <p class="stat__label">Athletes</p>
-      </div>
+      <p class="wp-body" style="margin-top:24px;">Ese documento se convirtió en la referencia usada para presentar a un nuevo grupo de inversionistas, capacitar personal en nuevas ubicaciones, y dirigir los esfuerzos de agencia y marketing durante el año siguiente, incluyendo la primera expansión de Navy fuera de Querétaro.</p>
     </div>
   </section>
 
-  <!-- ROVER principle -->
-  <section class="section" style="margin-top: 88px;">
-    <p class="principle">A brand that can't be reproduced isn't a brand yet. It's a place. Strategy is what makes a brand portable.</p>
-    <p class="principle__attr">— ROVER Principle</p>
+  <!-- OUTCOME -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">05</p>
+      <h2 class="wp-heading">Outcome</h2>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">05</p>
+      <h2 class="wp-heading">Resultado</h2>
+    </div>
+
+    <div class="scale" data-lang="en">
+      <div><p class="stat__num">2 → 4</p><p class="stat__label">Studios</p></div>
+      <div><p class="stat__num">1 → 2</p><p class="stat__label">Cities</p></div>
+      <div><p class="stat__num">2 Yrs</p><p class="stat__label">Querétaro to CDMX</p></div>
+    </div>
+    <div class="scale" data-lang="es">
+      <div><p class="stat__num">2 → 4</p><p class="stat__label">Estudios</p></div>
+      <div><p class="stat__num">1 → 2</p><p class="stat__label">Ciudades</p></div>
+      <div><p class="stat__num">2 Años</p><p class="stat__label">Querétaro a CDMX</p></div>
+    </div>
+
+    <div data-lang="en">
+      <p class="wp-body">Within two years of the initial brand realignment, Navy expanded from two studios to four, opening its first two locations in Mexico City, the same market where established premium operators already held the audience's preference. The repositioning work, and the system that formalized it, gave Navy something to stand on in front of that competition. It was also the material that convinced the new investors who ultimately funded the expansion.</p>
+      <p class="wp-body">Not every part of the system survived contact with growth at that speed. As new locations opened under more autonomous local leadership, some elements of the communication and operational standard were maintained less consistently than the original system called for. A brand system's value compounds through continued stewardship. Handed off once and left alone, it drifts.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-body">Dentro de dos años desde la realineación inicial de marca, Navy se expandió de dos estudios a cuatro, abriendo sus primeras dos ubicaciones en la Ciudad de México, el mismo mercado donde operadores premium ya establecidos tenían la preferencia del público. El trabajo de reposicionamiento, y el sistema que lo formalizó, le dieron a Navy algo sobre lo cual sostenerse frente a esa competencia. También fue el material que convenció a los nuevos inversionistas que finalmente financiaron la expansión.</p>
+      <p class="wp-body">No todas las partes del sistema sobrevivieron el contacto con un crecimiento a esa velocidad. Conforme nuevas ubicaciones abrían bajo liderazgo local más autónomo, algunos elementos del estándar de comunicación y operación se mantuvieron con menos consistencia de lo que el sistema original establecía. El valor de un sistema de marca se acumula con administración continua. Entregado una sola vez y dejado solo, se desvanece.</p>
+    </div>
   </section>
 
-  <!-- Scope -->
-  <section class="section">
+  <!-- PRINCIPLE -->
+  <section class="wp-section" style="margin-top:64px;">
+    <div data-lang="en">
+      <p class="principle">A brand system isn't a document about the brand. It's a document the brand can run on.</p>
+      <p class="principle__attr">ROVER Principle</p>
+    </div>
+    <div data-lang="es">
+      <p class="principle">Un sistema de marca no es un documento sobre la marca. Es un documento sobre el cual la marca puede operar.</p>
+      <p class="principle__attr">Principio ROVER</p>
+    </div>
+  </section>
+
+  <!-- ATTRIBUTION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">06</p>
+      <h2 class="wp-heading">Attribution &amp; Scope</h2>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">06</p>
+      <h2 class="wp-heading">Atribución y Alcance</h2>
+    </div>
+
     <div class="scope">
-      <div>
-        <p class="label">Engagement type</p>
-        <p class="scope__body">Strategy Design &amp; Deployment.<br />Multi-phase, ~12 months.</p>
+      <div data-lang="en">
+        <p class="wp-body">This engagement was led by <strong>Ricardo Ramos Studio</strong>, who recruited us and <strong>Angulo Estudio Creativo</strong> to execute the brand realignment and story-selling phases. We later led a final, independent phase, consolidating the engagement's accumulated work into the system that carried Navy through its Mexico City expansion.</p>
+        <p class="wp-body">Not included: ongoing content production, paid media, and day-to-day location management.</p>
       </div>
-      <div>
-        <p class="label">In collaboration with</p>
-        <p class="scope__body">Angulo Estudio Creativo<br />Ricardo Ramos Studio</p>
-      </div>
-      <div>
-        <p class="label">Not included</p>
-        <p class="scope__body">Ongoing content production, paid media, day-to-day brand management.</p>
+      <div data-lang="es">
+        <p class="wp-body">Este proyecto fue liderado por <strong>Ricardo Ramos Studio</strong>, quien nos reclutó a nosotros y a <strong>Angulo Estudio Creativo</strong> para ejecutar las fases de realineación de marca y story-selling. Posteriormente lideramos una fase final e independiente, consolidando el trabajo acumulado del proyecto en el sistema que llevó a Navy a través de su expansión a la Ciudad de México.</p>
+        <p class="wp-body">No incluido: producción continua de contenido, medios pagados, y gestión operativa diaria de ubicaciones.</p>
       </div>
     </div>
   </section>
 
-  <!-- Next + CTA -->
-  <div class="next">
-    <div>
-      <p class="next__label">Next case</p>
-      <a href="rover_case_study_biocotech.html" class="next__link">Biocotech Americas →</a>
-      <p class="next__meta">Industrial composting · Ongoing</p>
-    </div>
-    <a href="mailto:info@rover.mx?subject=Brand%20Alignment%20Session%20%E2%80%94%20booking%20request&amp;body=Hi%20ROVER%2C%0A%0AI%27d%20like%20to%20book%20a%20Brand%20Alignment%20Session.%0A%0AA%20bit%20about%20what%20I%27m%20building%3A%0A%0A" class="cta">Book a Brand Alignment Session →</a>
-  </div>
-
-  <!-- End mark -->
   <div class="end-mark" aria-hidden="true">
     <span class="end-mark__rule"></span>
     <span class="end-mark__label">ROVER</span>
@@ -518,57 +526,18 @@
 </article>
 
 <script>
-  /* Auto-resize emitter — content-bound (no growth loop).
-     Measures the .case article element directly. document.documentElement.scrollHeight
-     is floored by the iframe viewport size, which creates a feedback loop:
-     each emit grows the iframe → next measurement returns the larger viewport
-     height → iframe grows again → infinite scroll. Measuring the article via
-     getBoundingClientRect() is content-driven and immune to iframe size. */
   (function () {
     'use strict';
-    var last = 0;
-    var article = null;
-    var raf = 0;
-
-    function getArticle() {
-      if (!article) article = document.querySelector('.case');
-      return article;
-    }
-
-    function emit() {
-      var el = getArticle();
-      if (!el) return;
-      var h = Math.ceil(el.getBoundingClientRect().height) + 4; /* subpixel buffer */
-      if (h === last) return;
-      last = h;
-      try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
-    }
-
-    function schedule() {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(emit);
-    }
-
-    function start() {
-      var el = getArticle();
-      if (!el) return;
-      emit();
-      if ('ResizeObserver' in window) {
-        /* Observe the article specifically — not the body — so iframe-level
-           size changes can't trigger another emit. */
-        new ResizeObserver(schedule).observe(el);
-      }
-    }
-
-    window.addEventListener('resize', schedule);
-    window.addEventListener('load', emit);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
-    } else {
-      start();
-    }
+    var buttons = document.querySelectorAll('[data-set-lang]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-set-lang');
+        document.body.classList.toggle('lang-es', lang === 'es');
+        buttons.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-set-lang') === lang);
+        });
+      });
+    });
   })();
 </script>
 
