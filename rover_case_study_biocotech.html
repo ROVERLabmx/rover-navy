@@ -3,25 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biocotech Americas · ROVER</title>
-
-  <!--
-    ROVER · Case Study Embed
-    ------------------------
-    Fonts:
-      • Display: MADE EVOLVE Sans   (load locally — see @font-face stubs below)
-      • Body:    Inter               (loaded from Google Fonts)
-
-    Hosted at: https://roverlabmx.github.io/rover-navy/rover_case_study_biocotech.html
-    Embed:     see embed_snippet_biocotech.html in this repo.
-  -->
+  <title>Biocotech Americas · The Brief · ROVER</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* MADE EVOLVE Sans — replace src paths with your licensed font files */
     @font-face {
       font-family: 'MADE EVOLVE Sans';
       src: url('fonts/MADE-Evolve-Sans-Regular.woff2') format('woff2'),
@@ -48,6 +36,7 @@
       --fg-quiet:  rgba(255,255,255,0.5);
       --rule:      rgba(255,255,255,0.18);
       --rule-soft: rgba(255,255,255,0.10);
+      --accent-bg: rgba(255,255,255,0.05);
       --display:   'MADE EVOLVE Sans', 'Inter', system-ui, sans-serif;
       --body:      'Inter', system-ui, -apple-system, sans-serif;
     }
@@ -55,8 +44,7 @@
     *, *::before, *::after { box-sizing: border-box; }
 
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       background: var(--bg);
       color: var(--fg);
       font-family: var(--body);
@@ -67,10 +55,17 @@
     .case {
       max-width: 880px;
       margin: 0 auto;
-      padding: 96px 32px 56px;
+      padding: 72px 32px 56px;
     }
 
-    /* Tag strip */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin: 0 0 28px;
+      flex-wrap: wrap;
+    }
     .case__tags {
       display: flex;
       flex-wrap: wrap;
@@ -81,11 +76,11 @@
       font-weight: 500;
       text-transform: uppercase;
       color: var(--fg-muted);
-      margin: 0 0 28px;
+      margin: 0;
     }
-    .tag        { border: 1px solid var(--rule); padding: 5px 10px; }
-    .tag--bare  { padding: 5px 0; }
-    .tag--live  {
+    .tag       { border: 1px solid var(--rule); padding: 5px 10px; }
+    .tag--bare { padding: 5px 0; }
+    .tag--live {
       border-color: rgba(255,255,255,0.45);
       color: #fff;
     }
@@ -99,178 +94,167 @@
       vertical-align: 1px;
     }
 
-    /* Title block */
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--rule);
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .lang-toggle button {
+      background: transparent;
+      border: none;
+      color: var(--fg-muted);
+      padding: 8px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      font-weight: inherit;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .lang-toggle button:first-child { border-right: 1px solid var(--rule); }
+    .lang-toggle button.active {
+      background: var(--fg);
+      color: var(--bg);
+    }
+    .lang-toggle button:not(.active):hover {
+      color: var(--fg);
+      background: var(--accent-bg);
+    }
+
+    .doc-label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--fg-quiet);
+      margin: 0 0 18px;
+    }
+
     .case__title {
       font-family: var(--display);
-      font-size: clamp(40px, 6.4vw, 68px);
+      font-size: clamp(38px, 6vw, 62px);
       font-weight: 500;
       letter-spacing: -0.02em;
-      line-height: 1.04;
-      margin: 0 0 24px;
+      line-height: 1.05;
+      margin: 0 0 22px;
     }
     .case__lede {
       font-family: var(--body);
-      font-size: clamp(18px, 2.2vw, 22px);
+      font-size: clamp(17px, 2vw, 20px);
       font-weight: 300;
       color: var(--fg-muted);
       max-width: 660px;
-      line-height: 1.45;
-      margin: 0 0 56px;
+      line-height: 1.5;
+      margin: 0 0 48px;
     }
     .case__lede .quote {
       font-style: italic;
       color: var(--fg);
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .divider {
-      border: 0;
-      height: 1px;
+      border: 0; height: 1px;
       background: var(--rule);
-      margin: 0 0 56px;
+      margin: 0 0 48px;
     }
 
-    /* Sections */
-    .section { margin: 0 0 64px; }
+    .wp-section { margin: 0 0 56px; }
 
-    .label {
-      font-family: var(--body);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      font-weight: 500;
-      text-transform: uppercase;
-      color: var(--fg-muted);
-      margin: 0 0 20px;
-    }
-
-    .body {
-      font-family: var(--body);
-      font-size: 17px;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.92);
-      max-width: 680px;
-      margin: 0;
-    }
-
-    /* Mechanism — 4 phases */
-    .phases {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-    .phase {
-      border-top: 1px solid var(--rule);
-      padding-top: 16px;
-    }
-    .phase__num {
+    .wp-num {
       font-family: var(--display);
       font-size: 13px;
-      letter-spacing: 0.10em;
+      letter-spacing: 0.14em;
       color: var(--fg-quiet);
       margin: 0 0 10px;
     }
-    .phase__name {
+    .wp-heading {
       font-family: var(--display);
-      font-size: 19px;
+      font-size: clamp(24px, 3.2vw, 30px);
       font-weight: 500;
       letter-spacing: -0.01em;
-      margin: 0 0 10px;
+      margin: 0 0 20px;
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
     }
-    .phase__name .pending {
+    .wp-body {
       font-family: var(--body);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin: 0 0 16px;
+    }
+    .wp-body:last-child { margin-bottom: 0; }
+    .wp-body strong { color: var(--fg); font-weight: 600; }
+
+    .sys-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      margin: 24px 0 0;
+    }
+    .sys-item {
+      border-left: 2px solid var(--rule);
+      padding-left: 16px;
+    }
+    .sys-item__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--fg-quiet);
-      margin-left: 8px;
-      vertical-align: 2px;
+      font-weight: 700;
+      color: var(--fg);
+      margin: 0 0 6px;
     }
-    .phase__body {
+    .sys-item__body {
       font-family: var(--body);
-      font-size: 13px;
+      font-size: 14px;
       line-height: 1.55;
       color: var(--fg-muted);
       margin: 0;
     }
 
-    /* What we built */
-    .deliverables {
+    .scale {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 32px;
-      font-family: var(--body);
-      font-size: 15px;
-      color: rgba(255,255,255,0.88);
-    }
-    .deliverable {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--rule-soft);
-    }
-
-    /* Shift — before/in progress */
-    .shift {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .shift__side {
-      border-left: 1px solid var(--rule);
-      padding-left: 20px;
-    }
-    .shift__tag {
-      font-family: var(--body);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--fg-quiet);
-      margin: 0 0 8px;
-    }
-    .shift__body {
-      font-family: var(--body);
-      font-size: 15px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.88);
-      margin: 0;
-    }
-
-    /* Where we are now — prose block for ongoing cases */
-    .progress {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 28px 0;
       border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
-      padding: 32px 0;
+      margin: 0 0 24px;
     }
-    .progress__body {
-      font-family: var(--body);
-      font-size: 15px;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.88);
-      margin: 0;
-      max-width: 720px;
-    }
-    .progress__next {
-      margin-top: 20px;
-      font-family: var(--body);
-      font-size: 13px;
-      color: var(--fg-muted);
-      line-height: 1.6;
-    }
-    .progress__next em {
-      color: var(--fg);
-      font-style: normal;
+    .stat__num {
+      font-family: var(--display);
+      font-size: clamp(24px, 3.6vw, 34px);
       font-weight: 500;
+      letter-spacing: -0.015em;
+      margin: 0 0 6px;
+    }
+    .stat__label {
+      font-family: var(--body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin: 0;
     }
 
-    /* Pull-quote / principle */
     .principle {
       font-family: var(--display);
-      font-size: clamp(24px, 3.6vw, 36px);
+      font-size: clamp(22px, 3.2vw, 32px);
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.28;
       letter-spacing: -0.015em;
-      max-width: 760px;
-      margin: 0 0 18px;
+      max-width: 740px;
+      margin: 0 0 16px;
     }
     .principle__attr {
       font-family: var(--body);
@@ -281,244 +265,249 @@
       margin: 0;
     }
 
-    /* Scope panel */
     .scope {
       border: 1px solid var(--rule);
-      padding: 28px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      padding: 26px;
     }
-    .scope .label { margin-bottom: 8px; }
-    .scope__body {
-      font-family: var(--body);
-      font-size: 14px;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.88);
-      margin: 0;
-    }
+    .scope .wp-body { max-width: none; }
 
-    /* Next + CTA footer */
-    .next {
-      margin-top: 96px;
-      padding-top: 36px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-    .next__label {
-      font-family: var(--body);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fg-quiet);
-      margin: 0 0 10px;
-    }
-    .next__link {
-      font-family: var(--display);
-      font-size: clamp(20px, 2.8vw, 26px);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--fg);
-      text-decoration: none;
-    }
-    .next__link:hover { text-decoration: underline; text-underline-offset: 4px; }
-    .next__meta {
-      font-family: var(--body);
-      font-size: 13px;
-      color: var(--fg-muted);
-      margin: 6px 0 0;
-    }
-
-    .cta {
-      font-family: var(--body);
-      font-size: 12px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--fg);
-      text-decoration: none;
-      border: 1px solid var(--fg);
-      padding: 14px 22px;
-      transition: background 0.2s ease, color 0.2s ease;
-      white-space: nowrap;
-    }
-    .cta:hover { background: var(--fg); color: var(--bg); }
-
-    /* End mark — visual page terminator */
     .end-mark {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 72px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 64px;
     }
-    .end-mark__rule {
-      width: 32px;
-      height: 1px;
-      background: rgba(255,255,255,0.3);
-    }
+    .end-mark__rule { width: 32px; height: 1px; background: rgba(255,255,255,0.3); }
     .end-mark__label {
       font-family: var(--display);
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 11px; font-weight: 500;
       letter-spacing: 0.5em;
       color: rgba(255,255,255,0.55);
-      padding-left: 0.5em; /* compensates for trailing letter-spacing */
+      padding-left: 0.5em;
     }
 
-    /* Responsive */
-    @media (max-width: 760px) {
-      .phases       { grid-template-columns: 1fr 1fr; }
-      .scope        { grid-template-columns: 1fr 1fr; }
+    [data-lang="es"] { display: none; }
+    body.lang-es [data-lang="en"] { display: none; }
+    body.lang-es [data-lang="es"] { display: block; }
+    body.lang-es .sys-list[data-lang="es"] { display: grid; }
+    body.lang-es .scale[data-lang="es"] { display: grid; }
+
+    @media (max-width: 700px) {
+      .sys-list { grid-template-columns: 1fr; }
+      .scale { grid-template-columns: 1fr; gap: 24px; }
     }
     @media (max-width: 560px) {
-      .case          { padding: 64px 22px 40px; }
-      .deliverables  { grid-template-columns: 1fr; }
-      .shift         { grid-template-columns: 1fr; }
-      .scope         { grid-template-columns: 1fr; padding: 22px; }
-      .next          { flex-direction: column; align-items: flex-start; }
-      .case__title   { font-size: 40px; }
-      .end-mark      { margin-top: 56px; }
+      .case { padding: 56px 20px 40px; }
+      .scope { padding: 20px; }
     }
   </style>
 </head>
 
 <body>
-
 <article class="case">
 
-  <!-- Tag strip -->
-  <div class="case__tags">
-    <span class="tag tag--live">Ongoing</span>
-    <span class="tag">Brand strategy</span>
-    <span class="tag">Market entry</span>
-    <span class="tag--bare">2023—Present</span>
+  <div class="topbar">
+    <div class="case__tags">
+      <span class="tag tag--live">Ongoing</span>
+      <span class="tag">Brand Systems</span>
+      <span class="tag">Market Entry</span>
+      <span class="tag--bare">2021-Present</span>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language toggle">
+      <button type="button" class="active" data-set-lang="en">EN</button>
+      <button type="button" data-set-lang="es">ES</button>
+    </div>
   </div>
 
-  <!-- Title + lede -->
+  <p class="doc-label" data-lang="en">The Brief: Whitepaper Case Study</p>
+  <p class="doc-label" data-lang="es">El Brief: Estudio de Caso</p>
+
   <h1 class="case__title">Biocotech Americas</h1>
 
-  <p class="case__lede">
-    <span class="quote">"We had the technology. We couldn't get buyers to hear what it does."</span>
-    A composting technology company entering the North American market needed its brand to catch up to its capability. The work is in progress.
-  </p>
+  <div data-lang="en">
+    <p class="case__lede">
+      <span class="quote">"We had a proven technology that we needed to educate a completely new market on."</span>
+      A proven industrial technology, inherited from a decades-old Norwegian parent company, needed a language built for the North American market it was trying to enter.
+    </p>
+  </div>
+  <div data-lang="es">
+    <p class="case__lede">
+      <span class="quote">"Teníamos una tecnología comprobada, y necesitábamos educar a un mercado completamente nuevo sobre ella."</span>
+      Una tecnología industrial comprobada, heredada de una empresa matriz noruega con décadas de trayectoria, necesitaba un lenguaje construido para el mercado norteamericano al que intentaba entrar.
+    </p>
+  </div>
 
   <hr class="divider" />
 
-  <!-- The problem -->
-  <section class="section">
-    <p class="label">The problem</p>
-    <p class="body">
-      Biocotech Americas builds industrial composting systems — proven, sophisticated, sustainable. But the brand they had carried in had been built for a different market, a different scale, and a different audience. Entering the US and Canadian B2B market meant facing established players, more skeptical buyers, and a sales cycle that punishes any signal of "we're not quite ready." Their language, their materials, and their identity needed to reflect what BCTA had become — not what it had started as.
-    </p>
-  </section>
-
-  <!-- The mechanism -->
-  <section class="section">
-    <p class="label">The mechanism</p>
-    <div class="phases">
-      <div class="phase">
-        <p class="phase__num">01</p>
-        <p class="phase__name">Diagnose</p>
-        <p class="phase__body">Audited the existing brand against the North American competitive set — who BCTA was up against, how they spoke, where the language gap actually lived.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">02</p>
-        <p class="phase__name">Define</p>
-        <p class="phase__body">Reframed positioning around concrete impact and operational seriousness. Rebuilt brand foundation, aspiration, and promise to carry both sustainability and industrial credibility.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">03</p>
-        <p class="phase__name">Design</p>
-        <p class="phase__body">New visual identity, brand voice, sales-team materials, complementary service offerings, technical whitepapers — design system in collaboration with Ricky Ramos Studio.</p>
-      </div>
-      <div class="phase">
-        <p class="phase__num">04</p>
-        <p class="phase__name">Deploy <span class="pending">In progress</span></p>
-        <p class="phase__body">Rolling out new sales materials and website language. Iterating based on what's actually landing in active buyer conversations.</p>
-      </div>
+  <!-- SITUATION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">01</p>
+      <h2 class="wp-heading">Situation</h2>
+      <p class="wp-body">BioCoTech Americas distributes BioSpeed, an in-vessel composting technology developed by its Norwegian parent company and proven over decades in demanding environments. The engineering was never the question. The brand carrying it was built for a different market, a different scale, and a different kind of buyer, and it hadn't caught up to what the company had actually become.</p>
+      <p class="wp-body">Entering the US and Canadian B2B market meant competing for the same high-end hotels, corporate campuses, resorts, and institutional buyers that premium sustainability brands were also chasing. Those buyers were used to technology sold the way Tesla or Apple sold it: confident, simple, visually minimal, with a clear story about why it mattered. BCTA's early materials described the same technology a dozen different ways depending on who was writing that week, with no explanation of what the company's own name stood for. A technically superior product was losing the room before the pitch got to the technology at all.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">01</p>
+      <h2 class="wp-heading">Situación</h2>
+      <p class="wp-body">BioCoTech Americas distribuye BioSpeed, una tecnología de compostaje en contenedor desarrollada por su empresa matriz noruega y comprobada durante décadas en entornos exigentes. La ingeniería nunca fue la pregunta. La marca que la representaba estaba construida para otro mercado, otra escala y otro tipo de comprador, y no había alcanzado lo que la empresa realmente se había convertido.</p>
+      <p class="wp-body">Entrar al mercado B2B de Estados Unidos y Canadá significaba competir por los mismos hoteles de alto nivel, campus corporativos, resorts y compradores institucionales que también perseguían las marcas de sostenibilidad premium. Esos compradores estaban acostumbrados a tecnología vendida como la vendía Tesla o Apple: segura, simple, visualmente minimalista, con una historia clara de por qué importaba. Los primeros materiales de BCTA describían la misma tecnología de una docena de formas distintas según quién la escribiera esa semana, sin explicar qué significaba el nombre de la propia empresa. Un producto técnicamente superior perdía la sala antes de que la conversación llegara a la tecnología.</p>
     </div>
   </section>
 
-  <!-- What we built -->
-  <section class="section">
-    <p class="label">What we've built so far</p>
-    <div class="deliverables">
-      <div class="deliverable">Brand strategy and positioning for North America</div>
-      <div class="deliverable">New brand identity system (with Ricky Ramos Studio)</div>
-      <div class="deliverable">Sales-team support materials across 3 angles</div>
-      <div class="deliverable">BioSpeed Maintenance — productized service line</div>
-      <div class="deliverable">Whitepaper: Golden Gate Park BioSpeed integration</div>
-      <div class="deliverable">Website redesign and language download</div>
+  <!-- DIAGNOSIS -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">02</p>
+      <h2 class="wp-heading">Diagnosis</h2>
+      <p class="wp-body">The audit started with the people closest to the brand, not with a competitor teardown. Internal stakeholders and early reviewers were asked plainly what confused them, and the answers were consistent: no explanation of what "BioCoTech" stood for, too many inconsistent descriptions of the same product depending on who was talking, and a felt sense of being outside the category if you didn't already work in composting. None of that was a messaging preference problem. It was a comprehension problem, and comprehension problems kill B2B deals before pricing ever comes up.</p>
+      <p class="wp-body">Positioning work mapped BCTA against two axes, present versus future orientation, and individual versus community benefit, and the finding was specific: the brand's actual language sat almost entirely in the present, individual, logical quadrant. Every claim was about what the machine does for your operation today. Nothing spoke to where the buyer, or the category, was heading. The premium brands used as a benchmark, Tesla, Patagonia, Apple, SpaceX, all operated further toward future-oriented, community-scale language, even when selling to individuals. BCTA's positioning wasn't wrong. It was one full quadrant behind where its own buyers already were.</p>
+      <p class="wp-body">A second finding shaped how the sales language eventually got built: the buyers evaluating BCTA weren't one audience. A senior decision-maker weighing risk and reputation needed a fundamentally different pitch than a facilities manager weighing operational cost and hassle, and BCTA's existing materials spoke to neither with any precision, defaulting instead to technical language that undersold the story to one and overwhelmed the other.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">02</p>
+      <h2 class="wp-heading">Diagnóstico</h2>
+      <p class="wp-body">La auditoría comenzó con las personas más cercanas a la marca, no con un análisis de competidores. Se preguntó directamente a colaboradores internos y primeros revisores qué les confundía, y las respuestas fueron consistentes: ninguna explicación de qué significaba "BioCoTech", demasiadas descripciones inconsistentes del mismo producto según quién hablara, y una sensación de estar fuera de la categoría si uno no trabajaba ya en compostaje. Nada de eso era un problema de preferencia de mensaje. Era un problema de comprensión, y los problemas de comprensión matan los tratos B2B antes de que el precio siquiera aparezca en la conversación.</p>
+      <p class="wp-body">El trabajo de posicionamiento ubicó a BCTA en dos ejes: orientación presente versus futura, y beneficio individual versus comunitario, y el hallazgo fue específico: el lenguaje real de la marca se ubicaba casi por completo en el cuadrante presente, individual y lógico. Cada afirmación hablaba de lo que la máquina hacía por tu operación hoy. Nada hablaba de hacia dónde iba el comprador, o la categoría. Las marcas premium usadas como referencia, Tesla, Patagonia, Apple, SpaceX, operaban todas más hacia un lenguaje orientado al futuro y de escala comunitaria, incluso al venderle a individuos. El posicionamiento de BCTA no estaba equivocado. Estaba un cuadrante completo detrás de donde ya se encontraban sus propios compradores.</p>
+      <p class="wp-body">Un segundo hallazgo definió cómo se construyó finalmente el lenguaje de ventas: los compradores que evaluaban a BCTA no eran una sola audiencia. Un tomador de decisiones senior, evaluando riesgo y reputación, necesitaba un discurso fundamentalmente distinto al de un gerente de instalaciones evaluando costo operativo y complicaciones, y los materiales existentes de BCTA no le hablaban con precisión a ninguno de los dos, recurriendo en cambio a un lenguaje técnico que le restaba fuerza a uno y abrumaba al otro.</p>
     </div>
   </section>
 
-  <!-- The shift -->
-  <section class="section">
-    <p class="label">The shift</p>
-    <div class="shift">
-      <div class="shift__side">
-        <p class="shift__tag">Before</p>
-        <p class="shift__body">A capable industrial company speaking in language built for a different scale and a different audience.</p>
+  <!-- INTERVENTION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">03</p>
+      <h2 class="wp-heading">Intervention</h2>
+      <p class="wp-body">The work moved in phases across several years. An initial identity rebuild in 2021 and 2022, sales brochure design work, replaced BCTA's early, undifferentiated visual system, executed with Angulo Estudio Creativo. Starting in November 2022, a full brand strategy phase began in partnership with Ricardo Ramos Studio as senior strategist, running through March 2023, with execution handled by Power of People under joint supervision.</p>
+      <p class="wp-body">That phase rebuilt the brand from its foundations: essence, mission, vision, and a unique selling proposition built around a single claim, "Waste is a design flaw," that reframed BCTA's technology as correcting a systemic error rather than selling a machine. Positioning shifted deliberately toward the future-facing, community-scale quadrant the diagnosis had identified as the actual buyer's mindset. Sales language split explicitly by buyer type instead of defaulting to one technical voice for everyone.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">03</p>
+      <h2 class="wp-heading">Intervención</h2>
+      <p class="wp-body">El trabajo avanzó en fases a lo largo de varios años. Una primera reconstrucción de identidad en 2021 y 2022, junto con el diseño de materiales de venta, reemplazó el sistema visual temprano y poco diferenciado de BCTA, ejecutado junto con Angulo Estudio Creativo. A partir de noviembre de 2022, comenzó una fase completa de estrategia de marca en asociación con Ricardo Ramos Studio como estratega senior, que se extendió hasta marzo de 2023, con ejecución a cargo de Power of People bajo supervisión conjunta.</p>
+      <p class="wp-body">Esa fase reconstruyó la marca desde sus fundamentos: esencia, misión, visión, y una propuesta única de venta construida alrededor de una sola afirmación, "El desperdicio es una falla de diseño," que reformuló la tecnología de BCTA como la corrección de un error sistémico en lugar de la venta de una máquina. El posicionamiento se movió deliberadamente hacia el cuadrante orientado al futuro y de escala comunitaria que el diagnóstico había identificado como la mentalidad real del comprador. El lenguaje de ventas se dividió explícitamente por tipo de comprador en lugar de recurrir a una sola voz técnica para todos.</p>
+    </div>
+  </section>
+
+  <!-- SYSTEM -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">04</p>
+      <h2 class="wp-heading">System</h2>
+      <p class="wp-body">The strategy phase closed with a single deliverable built to carry the whole repositioning into daily sales use: the Brand Translator, delivered in March 2023 alongside a website update and new sales materials. It was built to run four functions at once.</p>
+      <div class="sys-list">
+        <div class="sys-item">
+          <p class="sys-item__label">Category Hook</p>
+          <p class="sys-item__body">Translates technical sustainability claims into plain, story-driven language built for a buyer who isn't already fluent in composting.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Quantified Proof</p>
+          <p class="sys-item__body">Converts environmental impact into boardroom terms: hauling-fee savings, carbon capture figures, cost-per-ton comparisons.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Persona-Specific Messaging</p>
+          <p class="sys-item__body">Splits the pitch explicitly between the senior decision-maker weighing risk and reputation, and the facilities manager weighing operational cost.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Category Education</p>
+          <p class="sys-item__body">Positions BCTA as a category authority, using market and regulatory context, rather than a vendor pitching a single machine.</p>
+        </div>
       </div>
-      <div class="shift__side">
-        <p class="shift__tag">In progress</p>
-        <p class="shift__body">A brand whose voice, materials, and identity match the maturity of the technology — and the seriousness of the buyers it's now reaching.</p>
+      <p class="wp-body" style="margin-top:24px;">The Translator became the reference behind the website language, sales materials, and industry-specific whitepapers built afterward, including a Golden Gate Park case study used in ongoing sales conversations.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">04</p>
+      <h2 class="wp-heading">Sistema</h2>
+      <p class="wp-body">La fase de estrategia cerró con un solo entregable construido para llevar todo el reposicionamiento al uso diario de ventas: el Brand Translator, entregado en marzo de 2023 junto con una actualización del sitio web y nuevos materiales de venta. Fue construido para operar cuatro funciones a la vez.</p>
+      <div class="sys-list" data-lang="es">
+        <div class="sys-item">
+          <p class="sys-item__label">Gancho de Categoría</p>
+          <p class="sys-item__body">Traduce afirmaciones técnicas de sostenibilidad a un lenguaje simple y narrativo, construido para un comprador que aún no domina el tema del compostaje.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Prueba Cuantificada</p>
+          <p class="sys-item__body">Convierte el impacto ambiental en términos de sala de juntas: ahorro en tarifas de transporte, cifras de captura de carbono, comparaciones de costo por tonelada.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Mensaje por Perfil de Comprador</p>
+          <p class="sys-item__body">Divide el discurso explícitamente entre el tomador de decisiones senior que evalúa riesgo y reputación, y el gerente de instalaciones que evalúa costo operativo.</p>
+        </div>
+        <div class="sys-item">
+          <p class="sys-item__label">Educación de Categoría</p>
+          <p class="sys-item__body">Posiciona a BCTA como una autoridad de categoría, usando contexto de mercado y regulatorio, en lugar de un proveedor vendiendo una sola máquina.</p>
+        </div>
       </div>
+      <p class="wp-body" style="margin-top:24px;">El Translator se convirtió en la referencia detrás del lenguaje del sitio web, los materiales de venta, y los whitepapers específicos por industria construidos después, incluyendo un caso de estudio de Golden Gate Park usado en conversaciones de venta activas.</p>
     </div>
   </section>
 
-  <!-- Where we are now (replaces the stat grid for ongoing cases) -->
-  <section class="section">
-    <p class="label">Where we are now</p>
-    <div class="progress">
-      <p class="progress__body">
-        The new brand foundation, identity, and first wave of sales materials are in market. The website redesign is in deployment. We're tracking how the language is landing in active buyer conversations and iterating on the materials based on what's earning second meetings and what isn't.
-      </p>
-      <p class="progress__next">
-        <em>Next phases:</em> category-education content for procurement audiences, partner program structure, and a pricing strategy for the BioSpeed Maintenance service line.
-      </p>
+  <!-- OUTCOME -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">05</p>
+      <h2 class="wp-heading">Outcome</h2>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">05</p>
+      <h2 class="wp-heading">Resultado</h2>
+    </div>
+
+    <div class="scale" data-lang="en">
+      <div><p class="stat__num">15,000+</p><p class="stat__label">Tons Diverted from Landfill</p></div>
+      <div><p class="stat__num">3,000+</p><p class="stat__label">MTCO2e Sequestered</p></div>
+      <div><p class="stat__num">2021 → Now</p><p class="stat__label">Local Accounts to National Landmarks</p></div>
+    </div>
+    <div class="scale" data-lang="es">
+      <div><p class="stat__num">15,000+</p><p class="stat__label">Toneladas Desviadas de Relleno Sanitario</p></div>
+      <div><p class="stat__num">3,000+</p><p class="stat__label">MTCO2e Secuestradas</p></div>
+      <div><p class="stat__num">2021 → Hoy</p><p class="stat__label">De Cuentas Locales a Sitios Emblemáticos</p></div>
+    </div>
+
+    <div data-lang="en">
+      <p class="wp-body">The account roster is the clearest signal of what changed. Before the rebrand, BCTA's marquee accounts were a single corporate campus and a handful of local and regional operators. Since, the roster has grown to include Zion National Park, the Kansas City Chiefs' composting operation at Arrowhead Stadium, Golden Gate Park in San Francisco, and a major NBA and NHL arena on the West Coast, landmark, publicly visible properties with the brand recognition and procurement scrutiny that a confusing pitch never survives.</p>
+      <p class="wp-body">The environmental numbers moved with the business ones. BCTA's own sales materials tracked landfill diversion moving from roughly 12,000 tons in early 2023 to over 15,000 tons by 2025, with carbon sequestration passing 3,000 metric tons of CO2 equivalent. More accounts sold on a clearer story means more BioSpeed units deployed, and more units deployed is the entire mechanism behind the environmental impact. The clarity of the pitch and the size of the environmental result are the same number, seen from two sides. BCTA's own leadership has also stated publicly that 2024 was the company's first profitable year, a milestone that landed within this same window, though profitability reflects many factors beyond brand and sales language alone.</p>
+      <p class="wp-body">That same positioning, BCTA as a category authority rather than a machine vendor, has also carried into public visibility beyond sales conversations. Tanner Farrow, BCTA's CEO, appears on camera in PBS SoCal's 2026 environmental series <em>Earth Focus</em>, in the Season 7 premiere covering stadium sustainability. The unit featured in that coverage began as an installation at the Rose Bowl in Pasadena before moving, as a pilot, to a major NBA and NHL arena on the West Coast, a pilot the venue converted into a full purchase of BCTA's larger M18 unit.</p>
+    </div>
+    <div data-lang="es">
+      <p class="wp-body">La lista de cuentas es la señal más clara de lo que cambió. Antes del rebranding, las cuentas insignia de BCTA eran un solo campus corporativo y un puñado de operadores locales y regionales. Desde entonces, la lista ha crecido para incluir Zion National Park, la operación de compostaje de los Kansas City Chiefs en Arrowhead Stadium, Golden Gate Park en San Francisco, y una importante arena de NBA y NHL en la Costa Oeste, propiedades emblemáticas y públicamente visibles, con el reconocimiento de marca y el escrutinio de adquisiciones que un discurso confuso nunca sobrevive.</p>
+      <p class="wp-body">Las cifras ambientales se movieron junto con las del negocio. Los propios materiales de venta de BCTA registraron un desvío de relleno sanitario que pasó de aproximadamente 12,000 toneladas a inicios de 2023 a más de 15,000 toneladas para 2025, con una captura de carbono que superó las 3,000 toneladas métricas de CO2 equivalente. Más cuentas vendidas con una historia más clara significa más unidades BioSpeed desplegadas, y más unidades desplegadas es el mecanismo completo detrás del impacto ambiental. La claridad del discurso y el tamaño del resultado ambiental son el mismo número, visto desde dos ángulos. El propio liderazgo de BCTA también ha declarado públicamente que 2024 fue el primer año rentable de la empresa, un hito que ocurrió dentro de esta misma ventana, aunque la rentabilidad refleja muchos factores más allá del lenguaje de marca y ventas por sí solo.</p>
+      <p class="wp-body">Ese mismo posicionamiento, BCTA como autoridad de categoría y no como proveedor de una máquina, también se ha trasladado a visibilidad pública más allá de las conversaciones de venta. Tanner Farrow, CEO de BCTA, aparece en cámara en la serie ambiental 2026 de PBS SoCal, <em>Earth Focus</em>, en el estreno de temporada 7 sobre sostenibilidad en estadios. La unidad presentada en esa cobertura comenzó como una instalación en el Rose Bowl en Pasadena antes de trasladarse, como piloto, a una importante arena de NBA y NHL en la Costa Oeste, un piloto que el recinto convirtió en la compra completa de la unidad M18, más grande, de BCTA.</p>
     </div>
   </section>
 
-  <!-- ROVER principle -->
-  <section class="section" style="margin-top: 88px;">
-    <p class="principle">In B2B, the brand is permission. If the language doesn't earn it, the technology never gets evaluated.</p>
-    <p class="principle__attr">— ROVER Principle</p>
+  <!-- PRINCIPLE -->
+  <section class="wp-section" style="margin-top:64px;">
+    <div data-lang="en">
+      <p class="principle">A brand doesn't need to sound bigger. It needs to sound like it already belongs in the room its buyers are standing in.</p>
+      <p class="principle__attr">ROVER Principle</p>
+    </div>
+    <div data-lang="es">
+      <p class="principle">Una marca no necesita sonar más grande. Necesita sonar como si ya perteneciera a la sala en la que están sus compradores.</p>
+      <p class="principle__attr">Principio ROVER</p>
+    </div>
   </section>
 
-  <!-- Scope -->
-  <section class="section">
+  <!-- ATTRIBUTION -->
+  <section class="wp-section">
+    <div data-lang="en">
+      <p class="wp-num">06</p>
+      <h2 class="wp-heading">Attribution &amp; Scope</h2>
+    </div>
+    <div data-lang="es">
+      <p class="wp-num">06</p>
+      <h2 class="wp-heading">Atribución y Alcance</h2>
+    </div>
+
     <div class="scope">
-      <div>
-        <p class="label">Engagement type</p>
-        <p class="scope__body">Strategy Design &amp; Deployment.<br />Multi-phase, ongoing.</p>
+      <div data-lang="en">
+        <p class="wp-body">This engagement began informally in 2014 and 2015 with early sales-brochure design work, ahead of any of ROVER's current methodology. The 2021-2022 identity rebuild was executed with <strong>Angulo Estudio Creativo</strong>. The 2022-2023 brand strategy phase was developed in partnership with <strong>Ricardo Ramos Studio</strong> as senior strategist, with execution led by <strong>Power of People</strong> under our joint supervision. Advisory work has continued since.</p>
+        <p class="wp-body">Not included: engineering, lead generation, and day-to-day sales operations.</p>
       </div>
-      <div>
-        <p class="label">In collaboration with</p>
-        <p class="scope__body">Ricardo Ramos Studio<br /><span style="color: var(--fg-quiet);">Visual identity system</span></p>
-      </div>
-      <div>
-        <p class="label">Not included</p>
-        <p class="scope__body">Engineering, lead generation, day-to-day sales operations.</p>
+      <div data-lang="es">
+        <p class="wp-body">Este proyecto comenzó de forma informal en 2014 y 2015 con trabajo inicial de diseño de folletos de venta, antes de cualquier metodología actual de ROVER. La reconstrucción de identidad de 2021-2022 se ejecutó junto con <strong>Angulo Estudio Creativo</strong>. La fase de estrategia de marca de 2022-2023 se desarrolló en asociación con <strong>Ricardo Ramos Studio</strong> como estratega senior, con ejecución liderada por <strong>Power of People</strong> bajo nuestra supervisión conjunta. El trabajo de asesoría ha continuado desde entonces.</p>
+        <p class="wp-body">No incluido: ingeniería, generación de leads, y operaciones diarias de ventas.</p>
       </div>
     </div>
   </section>
 
-  <!-- Next + CTA -->
-  <div class="next">
-    <div>
-      <p class="next__label">Next case</p>
-      <a href="#" class="next__link">mPos Global →</a>
-      <p class="next__meta">Latin American payment software · Delivered</p>
-    </div>
-    <a href="mailto:info@rover.mx?subject=Brand%20Alignment%20Session%20%E2%80%94%20booking%20request&amp;body=Hi%20ROVER%2C%0A%0AI%27d%20like%20to%20book%20a%20Brand%20Alignment%20Session.%0A%0AA%20bit%20about%20what%20I%27m%20building%3A%0A%0A" class="cta">Book a Brand Alignment Session →</a>
-  </div>
-
-  <!-- End mark -->
   <div class="end-mark" aria-hidden="true">
     <span class="end-mark__rule"></span>
     <span class="end-mark__label">ROVER</span>
@@ -528,58 +517,62 @@
 </article>
 
 <script>
-  /* Auto-resize emitter — content-bound (no growth loop).
-     Measures the .case article element directly. document.documentElement.scrollHeight
-     is floored by the iframe viewport size, which creates a feedback loop:
-     each emit grows the iframe → next measurement returns the larger viewport
-     height → iframe grows again → infinite scroll. Measuring the article via
-     getBoundingClientRect() is content-driven and immune to iframe size. */
   (function () {
     'use strict';
-    var last = 0;
-    var article = null;
-    var raf = 0;
-
-    function getArticle() {
-      if (!article) article = document.querySelector('.case');
-      return article;
-    }
-
-    function emit() {
-      var el = getArticle();
-      if (!el) return;
-      var h = Math.ceil(el.getBoundingClientRect().height) + 4; /* subpixel buffer */
-      if (h === last) return;
-      last = h;
-      try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
-    }
-
-    function schedule() {
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(emit);
-    }
-
-    function start() {
-      var el = getArticle();
-      if (!el) return;
-      emit();
-      if ('ResizeObserver' in window) {
-        /* Observe the article specifically — not the body — so iframe-level
-           size changes can't trigger another emit. */
-        new ResizeObserver(schedule).observe(el);
-      }
-    }
-
-    window.addEventListener('resize', schedule);
-    window.addEventListener('load', emit);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
-    } else {
-      start();
-    }
+    var buttons = document.querySelectorAll('[data-set-lang]');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var lang = btn.getAttribute('data-set-lang');
+        document.body.classList.toggle('lang-es', lang === 'es');
+        buttons.forEach(function (b) {
+          b.classList.toggle('active', b.getAttribute('data-set-lang') === lang);
+        });
+        scheduleResize();
+      });
+    });
   })();
+
+  var last = 0;
+  var article = null;
+  var raf = 0;
+
+  function getArticle() {
+    if (!article) article = document.querySelector('.case');
+    return article;
+  }
+
+  function emit() {
+    var el = getArticle();
+    if (!el) return;
+    var h = Math.ceil(el.getBoundingClientRect().height) + 4;
+    if (h === last) return;
+    last = h;
+    try { window.parent.postMessage({ type: 'rover:case-height', height: h }, '*'); } catch (e) {}
+  }
+
+  function scheduleResize() {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(emit);
+  }
+
+  function start() {
+    var el = getArticle();
+    if (!el) return;
+    emit();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(scheduleResize).observe(el);
+    }
+  }
+
+  window.addEventListener('resize', scheduleResize);
+  window.addEventListener('load', emit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(emit);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
 </script>
 
 </body>
